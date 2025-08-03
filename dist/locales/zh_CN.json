@@ -148,6 +148,7 @@
         "repeatMode": "Repeat",
         "playbackRate": "播放速率",
         "subtitleOffset": "字幕偏移",
+        "subtitleAdvancement": "卡拉OK字幕推进",
         "subtitleAlignment": "Subtitle Alignment",
         "toggleSubtitles": "Toggle Subtitles",
         "playbackMode": "Playback Mode",

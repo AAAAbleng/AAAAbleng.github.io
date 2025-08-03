@@ -148,6 +148,7 @@
         "repeatMode": "Repeat",
         "playbackRate": "Playback Rate",
         "subtitleOffset": "Subtitle Offset",
+        "subtitleAdvancement": "Subtitle Advancement",
         "subtitleAlignment": "Subtitle Alignment",
         "toggleSubtitles": "Toggle Subtitles",
         "playbackMode": "Playback Mode",
