@@ -79,7 +79,7 @@ class EpubConverter:
         metadata = {
             'title': 'Unknown Title',
             'author': 'Unknown Author',
-            'description': ''
+            'cover_image': None
         }
 
         try:
@@ -109,9 +109,33 @@ class EpubConverter:
                         if creator_elem is not None and creator_elem.text:
                             metadata['author'] = creator_elem.text.strip()
 
-                        desc_elem = opf_root.find('.//dc:description', ns_dc)
-                        if desc_elem is not None and desc_elem.text:
-                            metadata['description'] = desc_elem.text.strip()
+                        # Try to find cover image
+                        ns_opf = {'opf': 'http://www.idpf.org/2007/opf'}
+                        manifest = opf_root.find('.//opf:manifest', ns_opf)
+
+                        if manifest is not None:
+                            # Look for cover image in manifest
+                            for item in manifest.findall('.//opf:item', ns_opf):
+                                item_id = item.get('id', '').lower()
+                                href = item.get('href', '')
+                                media_type = item.get('media-type', '')
+
+                                # Check if it's an image and has 'cover' in id or href
+                                if media_type.startswith('image/'):
+                                    if 'cover' in item_id or 'cover' in href.lower():
+                                        metadata['cover_image'] = Path(
+                                            href).name
+                                        break
+
+                            # If no cover found, check for common cover filenames
+                            if not metadata['cover_image']:
+                                for item in manifest.findall('.//opf:item', ns_opf):
+                                    href = item.get('href', '')
+                                    filename = Path(href).name.lower()
+                                    if filename in ['cover.jpg', 'cover.jpeg', 'cover.png']:
+                                        metadata['cover_image'] = Path(
+                                            href).name
+                                        break
 
         except Exception as e:
             print(f"Error extracting metadata: {e}")
@@ -332,11 +356,15 @@ class EpubConverter:
                 log_callback(f"  ✓ Successfully converted to {output_dir}\n\n")
 
             # Return book entry for books.json
+            cover_path = None
+            if metadata['cover_image']:
+                cover_path = f"books_src/{book_id}/assets/{metadata['cover_image']}"
+
             return {
                 'book_id': book_id,
                 'title': metadata['title'],
                 'author': metadata['author'],
-                'description': metadata['description'],
+                'cover_image': cover_path,
                 'meta_path': f"books_src/{book_id}/meta.json"
             }
 

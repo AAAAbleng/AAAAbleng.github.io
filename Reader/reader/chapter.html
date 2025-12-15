@@ -38,7 +38,6 @@
             </main>
         </div>
 
-        <button id="sidebar-toggle-mobile" class="sidebar-toggle-mobile">☰</button>
         <button id="sidebar-expand-btn" class="sidebar-expand-btn">❯</button>
 
         <script src="reader.js"></script>
@@ -181,7 +180,6 @@
             }
 
             // Sidebar toggle logic
-            const sidebarToggleMobile = document.getElementById('sidebar-toggle-mobile');
             const sidebarExpandBtn = document.getElementById('sidebar-expand-btn');
             const sidebar = document.getElementById('sidebar');
             const toggleBtn = document.getElementById('toggle-sidebar');
@@ -192,17 +190,12 @@
                 return window.innerWidth <= 768;
             }
 
-            // Mobile: Toggle sidebar with floating button
-            sidebarToggleMobile.addEventListener('click', (e) => {
-                e.stopPropagation();
-                sidebar.classList.toggle('active');
-            });
-
-            // Desktop: Collapse sidebar with X button
+            // Collapse sidebar with X button (works on both mobile and desktop)
             toggleBtn.addEventListener('click', () => {
                 if (isMobile()) {
-                    // On mobile, just close the sidebar
+                    // On mobile, toggle active class for slide-in effect
                     sidebar.classList.remove('active');
+                    sidebarExpandBtn.classList.add('visible');
                 } else {
                     // On desktop, collapse the sidebar
                     sidebar.classList.toggle('collapsed');
@@ -210,35 +203,50 @@
                 }
             });
 
-            // Desktop: Expand sidebar with edge button
+            // Expand sidebar with edge button (works on both mobile and desktop)
             sidebarExpandBtn.addEventListener('click', () => {
-                sidebar.classList.remove('collapsed');
-                sidebarExpandBtn.classList.remove('visible');
+                if (isMobile()) {
+                    sidebar.classList.add('active');
+                    sidebarExpandBtn.classList.remove('visible');
+                } else {
+                    sidebar.classList.remove('collapsed');
+                    sidebarExpandBtn.classList.remove('visible');
+                }
             });
 
             // Mobile: Close sidebar when clicking on content area
             content.addEventListener('click', () => {
                 if (isMobile() && sidebar.classList.contains('active')) {
                     sidebar.classList.remove('active');
+                    sidebarExpandBtn.classList.add('visible');
                 }
             });
 
             // Handle window resize: reset states when switching between mobile and desktop
             window.addEventListener('resize', () => {
                 if (isMobile()) {
-                    // Switching to mobile: hide desktop expand button, reset collapsed state
-                    sidebarExpandBtn.classList.remove('visible');
+                    // Switching to mobile: reset collapsed state, keep expand button visible if sidebar hidden
                     sidebar.classList.remove('collapsed');
+                    if (!sidebar.classList.contains('active')) {
+                        sidebarExpandBtn.classList.add('visible');
+                    }
                 } else {
-                    // Switching to desktop: hide mobile active state
+                    // Switching to desktop: hide mobile active state, show sidebar
                     sidebar.classList.remove('active');
+                    sidebarExpandBtn.classList.remove('visible');
                 }
             });
 
-            // Mobile: Close sidebar when clicking on TOC items (using event delegation for dynamic content)
+            // Initialize: on mobile, show expand button since sidebar is hidden by default
+            if (isMobile()) {
+                sidebarExpandBtn.classList.add('visible');
+            }
+
+            // Close sidebar when clicking on TOC items on mobile
             document.getElementById('sidebar-toc').addEventListener('click', (e) => {
                 if (isMobile() && e.target.closest('.toc-item')) {
                     sidebar.classList.remove('active');
+                    sidebarExpandBtn.classList.add('visible');
                 }
             });
         </script>

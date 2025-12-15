@@ -440,28 +440,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Mobile Sidebar Toggle */
-.sidebar-toggle-mobile {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #667eea;
-    color: white;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 99;
-}
-
-.sidebar-toggle-mobile:hover {
-    background: #5568d3;
-}
-
 /* Loading State */
 .loading {
     text-align: center;
@@ -564,11 +542,13 @@ body {
         margin-bottom: 4px;
     }
 
-    /* Mobile Toggle Button */
-    .sidebar-toggle-mobile {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    /* Sidebar Expand Button - visible when sidebar is hidden on mobile */
+    .sidebar-expand-btn {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 50px;
+        font-size: 0.9em;
     }
 
     /* Content Area */
@@ -657,11 +637,10 @@ body {
         width: 260px;
     }
 
-    .sidebar-toggle-mobile {
-        width: 48px;
-        height: 48px;
-        bottom: 16px;
-        right: 16px;
+    .sidebar-expand-btn {
+        width: 18px;
+        height: 45px;
+        font-size: 0.85em;
     }
 
     .content {
