@@ -1,0 +1,415 @@
+{
+  "book_id": "think-again-the-power-of-knowing-what-you-dont-know",
+  "title": "Think Again: The Power of Knowing What You Don't Know",
+  "author": "Adam Grant",
+  "chapters": [
+    {
+      "chapter_id": "01-cover-think-again",
+      "order": 1,
+      "title": "Cover, Think Again",
+      "markdown_file": "01-think-again-the-power-of-knowing-what-you-dont-know--cover-think-again.md"
+    },
+    {
+      "chapter_id": "02-also-by-adam-grant",
+      "order": 2,
+      "title": "ALSO BY ADAM GRANT",
+      "markdown_file": "02-think-again-the-power-of-knowing-what-you-dont-know--also-by-adam-grant.md"
+    },
+    {
+      "chapter_id": "03-title-page-think-again",
+      "order": 3,
+      "title": "Title Page, Think Again",
+      "markdown_file": "03-think-again-the-power-of-knowing-what-you-dont-know--title-page-think-again.md"
+    },
+    {
+      "chapter_id": "04-copyright-think-again",
+      "order": 4,
+      "title": "Copyright, Think Again",
+      "markdown_file": "04-think-again-the-power-of-knowing-what-you-dont-know--copyright-think-again.md"
+    },
+    {
+      "chapter_id": "05-dedication-think-again",
+      "order": 5,
+      "title": "Dedication, Think Again",
+      "markdown_file": "05-think-again-the-power-of-knowing-what-you-dont-know--dedication-think-again.md"
+    },
+    {
+      "chapter_id": "06-contents",
+      "order": 6,
+      "title": "CONTENTS",
+      "markdown_file": "06-think-again-the-power-of-knowing-what-you-dont-know--contents.md"
+    },
+    {
+      "chapter_id": "07-prologue-think-again",
+      "order": 7,
+      "title": "Prologue, Think Again",
+      "markdown_file": "07-think-again-the-power-of-knowing-what-you-dont-know--prologue-think-again.md"
+    },
+    {
+      "chapter_id": "08-part-i",
+      "order": 8,
+      "title": "PART I\nIndividual Rethinking\nUpdating Our Own Views",
+      "markdown_file": "08-think-again-the-power-of-knowing-what-you-dont-know--part-i.md"
+    },
+    {
+      "chapter_id": "09-chapter-1",
+      "order": 9,
+      "title": "-CHAPTER 1\nA Preacher, a Prosecutor, a Politician, and a Scientist Walk into Your Mind",
+      "markdown_file": "09-think-again-the-power-of-knowing-what-you-dont-know--chapter-1.md"
+    },
+    {
+      "chapter_id": "10-chapter-2",
+      "order": 10,
+      "title": "-CHAPTER 2\nThe Armchair Quarterback and the Impostor\nFinding the Sweet Spot of Confidence",
+      "markdown_file": "10-think-again-the-power-of-knowing-what-you-dont-know--chapter-2.md"
+    },
+    {
+      "chapter_id": "11-chapter-3",
+      "order": 11,
+      "title": "-CHAPTER 3\nThe Joy of Being Wrong\nThe Thrill of Not Believing Everything You Think",
+      "markdown_file": "11-think-again-the-power-of-knowing-what-you-dont-know--chapter-3.md"
+    },
+    {
+      "chapter_id": "12-chapter-4",
+      "order": 12,
+      "title": "-CHAPTER 4\nThe Good Fight Club\nThe Psychology of Constructive Conflict",
+      "markdown_file": "12-think-again-the-power-of-knowing-what-you-dont-know--chapter-4.md"
+    },
+    {
+      "chapter_id": "13-part-ii",
+      "order": 13,
+      "title": "PART II\nInterpersonal Rethinking\nOpening Other People’s Minds",
+      "markdown_file": "13-think-again-the-power-of-knowing-what-you-dont-know--part-ii.md"
+    },
+    {
+      "chapter_id": "14-chapter-5",
+      "order": 14,
+      "title": "-CHAPTER 5\nDances with Foes\nHow to Win Debates and Influence People",
+      "markdown_file": "14-think-again-the-power-of-knowing-what-you-dont-know--chapter-5.md"
+    },
+    {
+      "chapter_id": "15-chapter-6",
+      "order": 15,
+      "title": "-CHAPTER 6\nBad Blood on the Diamond\nDiminishing Prejudice by Destabilizing Stereotypes",
+      "markdown_file": "15-think-again-the-power-of-knowing-what-you-dont-know--chapter-6.md"
+    },
+    {
+      "chapter_id": "16-chapter-7",
+      "order": 16,
+      "title": "-CHAPTER 7\nVaccine Whisperers and Mild-Mannered Interrogators\nHow the Right Kind of Listening Motivates People to Change",
+      "markdown_file": "16-think-again-the-power-of-knowing-what-you-dont-know--chapter-7.md"
+    },
+    {
+      "chapter_id": "17-part-iii",
+      "order": 17,
+      "title": "PART III\nCollective Rethinking\nCreating Communities of Lifelong Learners",
+      "markdown_file": "17-think-again-the-power-of-knowing-what-you-dont-know--part-iii.md"
+    },
+    {
+      "chapter_id": "18-chapter-8",
+      "order": 18,
+      "title": "-CHAPTER 8\nCharged Conversations\nDepolarizing Our Divided Discussions",
+      "markdown_file": "18-think-again-the-power-of-knowing-what-you-dont-know--chapter-8.md"
+    },
+    {
+      "chapter_id": "19-chapter-9",
+      "order": 19,
+      "title": "-CHAPTER 9\nRewriting the Textbook\nTeaching Students to Question Knowledge",
+      "markdown_file": "19-think-again-the-power-of-knowing-what-you-dont-know--chapter-9.md"
+    },
+    {
+      "chapter_id": "20-chapter-10",
+      "order": 20,
+      "title": "-CHAPTER 10\nThat’s Not the Way We’ve Always Done It\nBuilding Cultures of Learning at Work",
+      "markdown_file": "20-think-again-the-power-of-knowing-what-you-dont-know--chapter-10.md"
+    },
+    {
+      "chapter_id": "21-part-iv",
+      "order": 21,
+      "title": "PART IV\nConclusion",
+      "markdown_file": "21-think-again-the-power-of-knowing-what-you-dont-know--part-iv.md"
+    },
+    {
+      "chapter_id": "22-chapter-11",
+      "order": 22,
+      "title": "-CHAPTER 11\nEscaping Tunnel Vision\nReconsidering Our Best-Laid Career and Life Plans",
+      "markdown_file": "22-think-again-the-power-of-knowing-what-you-dont-know--chapter-11.md"
+    },
+    {
+      "chapter_id": "23-epilogue-think-again",
+      "order": 23,
+      "title": "Epilogue, Think Again",
+      "markdown_file": "23-think-again-the-power-of-knowing-what-you-dont-know--epilogue-think-again.md"
+    },
+    {
+      "chapter_id": "24-i-individual-rethinking",
+      "order": 24,
+      "title": "-I. INDIVIDUAL RETHINKING\nII. INTERPERSONAL RETHINKING\nIII. COLLECTIVE RETHINKING",
+      "markdown_file": "24-think-again-the-power-of-knowing-what-you-dont-know--i-individual-rethinking.md"
+    },
+    {
+      "chapter_id": "25-acknowledgments",
+      "order": 25,
+      "title": "ACKNOWLEDGMENTS",
+      "markdown_file": "25-think-again-the-power-of-knowing-what-you-dont-know--acknowledgments.md"
+    },
+    {
+      "chapter_id": "26-notes",
+      "order": 26,
+      "title": "NOTES",
+      "markdown_file": "26-think-again-the-power-of-knowing-what-you-dont-know--notes.md"
+    },
+    {
+      "chapter_id": "27-illustration-credits",
+      "order": 27,
+      "title": "ILLUSTRATION CREDITS",
+      "markdown_file": "27-think-again-the-power-of-knowing-what-you-dont-know--illustration-credits.md"
+    },
+    {
+      "chapter_id": "28-index",
+      "order": 28,
+      "title": "INDEX",
+      "markdown_file": "28-think-again-the-power-of-knowing-what-you-dont-know--index.md"
+    },
+    {
+      "chapter_id": "29-about-the-author",
+      "order": 29,
+      "title": "ABOUT THE AUTHOR",
+      "markdown_file": "29-think-again-the-power-of-knowing-what-you-dont-know--about-the-author.md"
+    },
+    {
+      "chapter_id": "30-whats-next-on-your-reading-list",
+      "order": 30,
+      "title": "What’s next on your reading list?",
+      "markdown_file": "30-think-again-the-power-of-knowing-what-you-dont-know--whats-next-on-your-reading-list.md"
+    },
+    {
+      "chapter_id": "31-continued-think-again",
+      "order": 31,
+      "title": "Continued, Think Again",
+      "markdown_file": "31-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again.md"
+    },
+    {
+      "chapter_id": "32-continued-think-again-2",
+      "order": 32,
+      "title": "Continued, Think Again",
+      "markdown_file": "32-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-2.md"
+    },
+    {
+      "chapter_id": "33-continued-think-again-3",
+      "order": 33,
+      "title": "Continued, Think Again",
+      "markdown_file": "33-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-3.md"
+    },
+    {
+      "chapter_id": "34-continued-think-again-4",
+      "order": 34,
+      "title": "Continued, Think Again",
+      "markdown_file": "34-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-4.md"
+    },
+    {
+      "chapter_id": "35-continued-think-again-5",
+      "order": 35,
+      "title": "Continued, Think Again",
+      "markdown_file": "35-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-5.md"
+    },
+    {
+      "chapter_id": "36-continued-think-again-6",
+      "order": 36,
+      "title": "Continued, Think Again",
+      "markdown_file": "36-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-6.md"
+    },
+    {
+      "chapter_id": "37-continued-think-again-7",
+      "order": 37,
+      "title": "Continued, Think Again",
+      "markdown_file": "37-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-7.md"
+    },
+    {
+      "chapter_id": "38-continued-think-again-8",
+      "order": 38,
+      "title": "Continued, Think Again",
+      "markdown_file": "38-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-8.md"
+    },
+    {
+      "chapter_id": "39-continued-think-again-9",
+      "order": 39,
+      "title": "Continued, Think Again",
+      "markdown_file": "39-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-9.md"
+    },
+    {
+      "chapter_id": "40-continued-think-again-10",
+      "order": 40,
+      "title": "Continued, Think Again",
+      "markdown_file": "40-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-10.md"
+    },
+    {
+      "chapter_id": "41-continued-think-again-11",
+      "order": 41,
+      "title": "Continued, Think Again",
+      "markdown_file": "41-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-11.md"
+    },
+    {
+      "chapter_id": "42-continued-think-again-12",
+      "order": 42,
+      "title": "Continued, Think Again",
+      "markdown_file": "42-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-12.md"
+    },
+    {
+      "chapter_id": "43-continued-think-again-13",
+      "order": 43,
+      "title": "Continued, Think Again",
+      "markdown_file": "43-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-13.md"
+    },
+    {
+      "chapter_id": "44-continued-think-again-14",
+      "order": 44,
+      "title": "Continued, Think Again",
+      "markdown_file": "44-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-14.md"
+    },
+    {
+      "chapter_id": "45-continued-think-again-15",
+      "order": 45,
+      "title": "Continued, Think Again",
+      "markdown_file": "45-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-15.md"
+    },
+    {
+      "chapter_id": "46-continued-think-again-16",
+      "order": 46,
+      "title": "Continued, Think Again",
+      "markdown_file": "46-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-16.md"
+    },
+    {
+      "chapter_id": "47-continued-think-again-17",
+      "order": 47,
+      "title": "Continued, Think Again",
+      "markdown_file": "47-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-17.md"
+    },
+    {
+      "chapter_id": "48-continued-think-again-18",
+      "order": 48,
+      "title": "Continued, Think Again",
+      "markdown_file": "48-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-18.md"
+    },
+    {
+      "chapter_id": "49-continued-think-again-19",
+      "order": 49,
+      "title": "Continued, Think Again",
+      "markdown_file": "49-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-19.md"
+    },
+    {
+      "chapter_id": "50-continued-think-again-20",
+      "order": 50,
+      "title": "Continued, Think Again",
+      "markdown_file": "50-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-20.md"
+    },
+    {
+      "chapter_id": "51-continued-think-again-21",
+      "order": 51,
+      "title": "Continued, Think Again",
+      "markdown_file": "51-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-21.md"
+    },
+    {
+      "chapter_id": "52-continued-think-again-22",
+      "order": 52,
+      "title": "Continued, Think Again",
+      "markdown_file": "52-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-22.md"
+    },
+    {
+      "chapter_id": "53-continued-think-again-23",
+      "order": 53,
+      "title": "Continued, Think Again",
+      "markdown_file": "53-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-23.md"
+    },
+    {
+      "chapter_id": "54-continued-think-again-24",
+      "order": 54,
+      "title": "Continued, Think Again",
+      "markdown_file": "54-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-24.md"
+    },
+    {
+      "chapter_id": "55-continued-think-again-25",
+      "order": 55,
+      "title": "Continued, Think Again",
+      "markdown_file": "55-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-25.md"
+    },
+    {
+      "chapter_id": "56-continued-think-again-26",
+      "order": 56,
+      "title": "Continued, Think Again",
+      "markdown_file": "56-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-26.md"
+    },
+    {
+      "chapter_id": "57-continued-think-again-27",
+      "order": 57,
+      "title": "Continued, Think Again",
+      "markdown_file": "57-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-27.md"
+    },
+    {
+      "chapter_id": "58-continued-think-again-28",
+      "order": 58,
+      "title": "Continued, Think Again",
+      "markdown_file": "58-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-28.md"
+    },
+    {
+      "chapter_id": "59-continued-think-again-29",
+      "order": 59,
+      "title": "Continued, Think Again",
+      "markdown_file": "59-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-29.md"
+    },
+    {
+      "chapter_id": "60-continued-think-again-30",
+      "order": 60,
+      "title": "Continued, Think Again",
+      "markdown_file": "60-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-30.md"
+    },
+    {
+      "chapter_id": "61-continued-think-again-31",
+      "order": 61,
+      "title": "Continued, Think Again",
+      "markdown_file": "61-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-31.md"
+    },
+    {
+      "chapter_id": "62-continued-think-again-32",
+      "order": 62,
+      "title": "Continued, Think Again",
+      "markdown_file": "62-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-32.md"
+    },
+    {
+      "chapter_id": "63-continued-think-again-33",
+      "order": 63,
+      "title": "Continued, Think Again",
+      "markdown_file": "63-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-33.md"
+    },
+    {
+      "chapter_id": "64-continued-think-again-34",
+      "order": 64,
+      "title": "Continued, Think Again",
+      "markdown_file": "64-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-34.md"
+    },
+    {
+      "chapter_id": "65-continued-think-again-35",
+      "order": 65,
+      "title": "Continued, Think Again",
+      "markdown_file": "65-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-35.md"
+    },
+    {
+      "chapter_id": "66-continued-think-again-36",
+      "order": 66,
+      "title": "Continued, Think Again",
+      "markdown_file": "66-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-36.md"
+    },
+    {
+      "chapter_id": "67-continued-think-again-37",
+      "order": 67,
+      "title": "Continued, Think Again",
+      "markdown_file": "67-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-37.md"
+    },
+    {
+      "chapter_id": "68-continued-think-again-38",
+      "order": 68,
+      "title": "Continued, Think Again",
+      "markdown_file": "68-think-again-the-power-of-knowing-what-you-dont-know--continued-think-again-38.md"
+    }
+  ]
+}

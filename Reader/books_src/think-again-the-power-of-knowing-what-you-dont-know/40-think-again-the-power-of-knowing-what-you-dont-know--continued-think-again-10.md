@@ -1,0 +1,1 @@
+[*](../Text/16_Chapter_7_Vaccine_Whi.xhtml#footnote-020-backlink "footnote reference") It seems that humans have understood the magic of talking ourselves into change for thousands of years. I learned recently that the word _abracadabra_ comes from a Hebrew phrase that means “I create as I speak.”

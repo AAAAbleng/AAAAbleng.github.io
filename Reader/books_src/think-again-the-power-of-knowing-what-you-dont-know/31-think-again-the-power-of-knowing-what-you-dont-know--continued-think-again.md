@@ -1,0 +1,1 @@
+[*](../Text/12_Chapter_4_The_Good_Fi.xhtml#footnote-011-backlink "footnote reference") In an analysis of over 40 million tweets, Americans were more likely than Canadians to use words like _sh*t_ , _b*tch_ , _hate_ , and _damn_ , while Canadians favored more agreeable words like _thanks_ , _great_ , _good_ , and _sure_.

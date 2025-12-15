@@ -1,9 +1,23 @@
 [
-    {
-        "book_id": "popular",
-        "title": "Popular",
-        "author": "Mitch Prinstein",
-        "cover_image": "books_src/popular/assets/cover.jpg",
-        "meta_path": "books_src/popular/meta.json"
-    }
+  {
+    "book_id": "summary-think-again-the-power-of-knowing-what-you",
+    "title": "Summary: Think Again - the Power of Knowing What You Don’t Know by Adam Grant",
+    "author": "The 60 Minutes Summary",
+    "cover_image": "books_src/summary-think-again-the-power-of-knowing-what-you/assets/Image00002.jpg",
+    "meta_path": "books_src/summary-think-again-the-power-of-knowing-what-you/meta.json"
+  },
+  {
+    "book_id": "popular",
+    "title": "Popular",
+    "author": "Mitch Prinstein",
+    "cover_image": "books_src/popular/assets/cover.jpg",
+    "meta_path": "books_src/popular/meta.json"
+  },
+  {
+    "book_id": "think-again-the-power-of-knowing-what-you-dont-know",
+    "title": "Think Again: The Power of Knowing What You Don't Know",
+    "author": "Adam Grant",
+    "cover_image": "books_src/think-again-the-power-of-knowing-what-you-dont-know/assets/9781984878113_cover.jpg",
+    "meta_path": "books_src/think-again-the-power-of-knowing-what-you-dont-know/meta.json"
+  }
 ]

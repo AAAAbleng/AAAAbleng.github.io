@@ -1,3 +1,8 @@
+
+### **Important Notice**
+
+whenever you make a change, you need to update this file and README.md so that later next ai agent knows what the newest version is
+
 # Reader Codebase Instructions
 
 ## Project Overview
@@ -6,6 +11,9 @@ A lightweight EPUB-to-Markdown converter system with static HTML reading interfa
 2. **Web Reader** (HTML/JS/CSS) - Client-side web app with localStorage progress tracking
 
 ## Architecture & Data Flow
+
+
+
 
 ### Component Interaction
 ```
@@ -24,10 +32,11 @@ EPUB Files → epub_to_md_gui.py → books_src/{book_id}/
 
 ### Data Structures
 
-**books.json** - Array of book entries (root, manually maintained):
+**books.json** - Array of book entries (root, auto-updated by converter):
 - `book_id`: Slug format (lowercase, hyphens), used for URLs & localStorage
 - `title`, `author`, `description`: Display metadata
 - `meta_path`: Path to `books_src/{book_id}/meta.json`
+- New books are automatically added at the beginning of the array
 
 **meta.json** - Per-book metadata (auto-generated, per book):
 - `book_id`, `title`, `author`
@@ -48,7 +57,7 @@ EPUB Files → epub_to_md_gui.py → books_src/{book_id}/
 1. Run `python epub_to_md_gui.py`
 2. Select EPUB file(s) - tool auto-extracts title/author from OPF metadata
 3. Converter generates: `books_src/{book_id}/meta.json`, `*.md`, `assets/`
-4. JSON auto-copied to clipboard - paste into `books.json`
+4. Converter automatically updates `books.json` with new entry at the beginning
 5. Reload web reader to see new book
 
 **Debugging failed conversions**:
@@ -82,12 +91,25 @@ All navigation via URL query params: `?book_id=X&chapter_id=Y`
 
 ### Slug Generation (Python)
 ```python
-def slugify(text: str) -> str:
+def slugify(text: str, max_length: int = None) -> str:
     text = text.lower()
     text = re.sub(r'[^\w\s-]', '', text)
     text = re.sub(r'[-\s]+', '-', text)
-    return text.strip('-')
+    text = text.strip('-')
+    
+    if max_length and len(text) > max_length:
+        text = text[:max_length].rstrip('-') + '...'
+    
+    return text
 ```
+
+**Length Limits** (to prevent filesystem issues):
+- Book folder name (book_id): Max 50 characters
+- Chapter slug: Max 10 characters  
+- Author slug: Max 10 characters (if used)
+- Total filename: Max 150 characters (format: `{order:02d}-{book_slug}--{chapter_slug}.md`)
+- Truncated slugs are cut off at max length and trailing dashes removed
+
 Used for: book_id (from title), chapter_id (from chapter heading)
 
 ### EPUB Metadata Extraction (Python)
@@ -258,3 +280,8 @@ Used for: book_id (from title), chapter_id (from chapter heading)
 3. **Export progress**:
    - Serialize all `reading_progress::*` keys to JSON
    - Download as `.json` or sync to server (requires backend)
+
+
+### **Important Notice**
+
+whenever you make a change, you need to update this file and README.md so that later next ai agent knows what the newest version is

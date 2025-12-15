@@ -21,6 +21,38 @@
                     <span class="nav-text">目录</span>
                 </button>
                 <div id="book-title-nav" class="book-title-nav"></div>
+                <button id="settings-btn" class="nav-btn nav-btn-settings">
+                    <span class="nav-icon">⚙</span>
+                    <span class="nav-text">设置</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="settings-modal" style="display: none;">
+            <div class="settings-overlay"></div>
+            <div class="settings-dialog">
+                <h3>字体大小</h3>
+                <div class="font-size-options">
+                    <button class="font-size-btn" data-scale="20">20%</button>
+                    <button class="font-size-btn" data-scale="35">35%</button>
+                    <button class="font-size-btn" data-scale="50">50%</button>
+                    <button class="font-size-btn" data-scale="65">65%</button>
+                    <button class="font-size-btn" data-scale="80">80%</button>
+                    <button class="font-size-btn" data-scale="95">95%</button>
+                    <button class="font-size-btn" data-scale="100">100%</button>
+                    <button class="font-size-btn" data-scale="110">110%</button>
+                    <button class="font-size-btn" data-scale="125">125%</button>
+                    <button class="font-size-btn" data-scale="140">140%</button>
+                    <button class="font-size-btn" data-scale="155">155%</button>
+                    <button class="font-size-btn" data-scale="170">170%</button>
+                    <button class="font-size-btn" data-scale="185">185%</button>
+                    <button class="font-size-btn" data-scale="200">200%</button>
+                </div>
+                <div class="settings-actions">
+                    <button id="settings-cancel" class="btn btn-secondary">取消</button>
+                    <button id="settings-confirm" class="btn btn-primary">确认</button>
+                </div>
             </div>
         </div>
 
@@ -85,7 +117,7 @@
                     }
 
                     // Update navigation
-                    document.getElementById('book-title-nav').textContent = currentMeta.title;
+                    document.getElementById('book-title-nav').textContent = `${currentMeta.title} - ${currentBook.author}`;
                     document.title = `${currentChapter.title} - ${currentMeta.title}`;
 
                     // Render sidebar TOC
@@ -105,6 +137,23 @@
                     const contentDiv = document.getElementById('chapter-content');
                     contentDiv.innerHTML = html;
                     contentDiv.style.display = 'block';
+
+                    // Fix image paths - make them relative to chapter.html
+                    const images = contentDiv.querySelectorAll('img');
+                    images.forEach(img => {
+                        const src = img.getAttribute('src');
+                        if (src && src.startsWith('assets/')) {
+                            // Convert assets/image.jpg to ../books_src/{book_id}/assets/image.jpg
+                            img.src = `../${bookDir}/${src}`;
+                        }
+                    });
+
+                    // Apply saved font scale
+                    const saved = localStorage.getItem('font_scale');
+                    if (saved) {
+                        const scale = parseInt(saved);
+                        contentDiv.style.fontSize = (scale / 100) + 'em';
+                    }
 
                     // Setup chapter navigation
                     setupChapterNavigation(bookId, chapterId);
@@ -247,15 +296,15 @@
                 sidebarExpandBtn.classList.add('visible');
             }
 
-            // TOC button in nav bar - expand sidebar
+            // TOC button in nav bar - toggle sidebar
             const tocBtn = document.getElementById('toc-btn');
             tocBtn.addEventListener('click', () => {
                 if (isMobile()) {
-                    sidebar.classList.add('active');
-                    sidebarExpandBtn.classList.remove('visible');
+                    sidebar.classList.toggle('active');
+                    sidebarExpandBtn.classList.toggle('visible', !sidebar.classList.contains('active'));
                 } else {
-                    sidebar.classList.remove('collapsed');
-                    sidebarExpandBtn.classList.remove('visible');
+                    sidebar.classList.toggle('collapsed');
+                    sidebarExpandBtn.classList.toggle('visible', sidebar.classList.contains('collapsed'));
                 }
             });
 
@@ -266,6 +315,79 @@
                     sidebarExpandBtn.classList.add('visible');
                 }
             });
+
+            // Settings modal logic
+            const settingsBtn = document.getElementById('settings-btn');
+            const settingsModal = document.getElementById('settings-modal');
+            const settingsOverlay = document.querySelector('.settings-overlay');
+            const settingsCancelBtn = document.getElementById('settings-cancel');
+            const settingsConfirmBtn = document.getElementById('settings-confirm');
+            const fontSizeBtns = document.querySelectorAll('.font-size-btn');
+
+            let selectedFontScale = 100; // Default scale
+
+            // Load saved font scale
+            function loadFontScale() {
+                const saved = localStorage.getItem('font_scale');
+                if (saved) {
+                    selectedFontScale = parseInt(saved);
+                    applyFontScale(selectedFontScale);
+                }
+                updateFontSizeUI();
+            }
+
+            // Apply font scale to content
+            function applyFontScale(scale) {
+                const contentDiv = document.getElementById('chapter-content');
+                if (contentDiv) {
+                    contentDiv.style.fontSize = (scale / 100) + 'em';
+                }
+            }
+
+            // Update UI to show selected size
+            function updateFontSizeUI() {
+                fontSizeBtns.forEach(btn => {
+                    const scale = parseInt(btn.dataset.scale);
+                    if (scale === selectedFontScale) {
+                        btn.classList.add('selected');
+                    } else {
+                        btn.classList.remove('selected');
+                    }
+                });
+            }
+
+            // Open settings modal
+            settingsBtn.addEventListener('click', () => {
+                settingsModal.style.display = 'flex';
+                updateFontSizeUI();
+            });
+
+            // Close settings modal
+            function closeSettingsModal() {
+                settingsModal.style.display = 'none';
+            }
+
+            settingsCancelBtn.addEventListener('click', closeSettingsModal);
+            settingsOverlay.addEventListener('click', closeSettingsModal);
+
+            // Select font size (preview)
+            fontSizeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const scale = parseInt(btn.dataset.scale);
+                    selectedFontScale = scale;
+                    updateFontSizeUI();
+                    applyFontScale(scale);
+                });
+            });
+
+            // Confirm settings
+            settingsConfirmBtn.addEventListener('click', () => {
+                localStorage.setItem('font_scale', selectedFontScale.toString());
+                closeSettingsModal();
+            });
+
+            // Load font scale on page load
+            loadFontScale();
         </script>
     </body>
 

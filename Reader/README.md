@@ -47,11 +47,12 @@ python epub_to_md_gui.py
    - Markdown 文件命名格式：`{序号:02d}-{书名slug}--{章节slug}.md`
    - 图片等资源保存到 `books_src/{book_id}/assets/`
    - 元数据保存到 `books_src/{book_id}/meta.json`
+   - **标题提取**：自动提取所有连续的标题标签（h1-h6），组合成完整标题
+   - **层级前缀**：根据标题级别自动添加前缀（h2 加 `-`，h3 加 `--`，以此类推）
 
-4. **更新 books.json：**
-   - JSON 内容自动复制到剪贴板
-   - 粘贴到 `books.json` 文件中
-   - 注意 JSON 数组格式（条目之间用逗号分隔）
+4. **自动更新 books.json：**
+   - 程序自动将新书信息添加到 `books.json` 文件的开头
+   - 无需手动复制粘贴
 
 ### 如何找到转换后的书籍文件
 
@@ -89,18 +90,27 @@ books_src/
 - 从书名自动生成
 - 小写字母，空格替换为减号
 - 移除特殊字符
+- **长度限制：最多 50 字符**，超出部分直接截断
 - 示例："Anki Manual" → "anki-manual"
 
 **章节文件：**
 - 格式：`{序号:02d}-{书名slug}--{章节slug}.md`
 - 示例：`01-anki-manual--getting-started.md`
 - 序号补零到 2 位数字
-- 章节 slug 规则与书名相同
+- **章节 slug 最多 10 字符**，超出部分直接截断
+- **总文件名长度限制：150 字符**
 
 **章节 ID：**
 - 格式：`{序号:02d}-{章节slug}`
 - 示例：`01-getting-started`
 - 用于 URL 和 localStorage 键名
+
+**长度限制说明：**
+- 书籍文件夹名（book_id）：最多 50 字符
+- 章节 slug：最多 10 字符
+- 作者 slug（如使用）：最多 10 字符
+- 完整文件名：最多 150 字符
+- 所有超长部分自动截断，确保末尾不含连字符
 
 ### meta.json 格式
 
@@ -115,10 +125,28 @@ books_src/
       "order": 1,
       "title": "Getting Started",
       "markdown_file": "01-anki-manual--getting-started.md"
+    },
+    {
+      "chapter_id": "02-chapter-1",
+      "order": 2,
+      "title": "CHAPTER 1\nThe Adult Playground",
+      "markdown_file": "02-anki-manual--chapter-1.md"
+    },
+    {
+      "chapter_id": "03-part-1",
+      "order": 3,
+      "title": "-PART 1\nIntroduction",
+      "markdown_file": "03-anki-manual--part-1.md"
     }
   ]
 }
 ```
+
+**标题说明：**
+- **无前缀**：h1 级标题（顶级章节，如 "Getting Started"）
+- **一个 `-` 前缀**：h2 级标题（二级标题，如 "-CHAPTER 1"）
+- **两个 `--` 前缀**：h3 级标题（三级标题）
+- **多行标题**：同一章节的多个连续标题会用换行符 `\n` 组合（如 "CHAPTER 1\nThe Adult Playground"）
 
 ### books.json 格式
 
@@ -220,8 +248,7 @@ python -m http.server 8000
    运行 epub_to_md_gui.py
    → 选择 EPUB 文件
    → 文件转换到 books_src/
-   → JSON 复制到剪贴板
-   → 粘贴到 books.json
+   → 自动更新 books.json（新书添加到开头）
    ```
 
 2. **阅读书籍：**
@@ -251,9 +278,29 @@ python -m http.server 8000
 - 支持 localStorage 的现代浏览器
 - `marked.js`（从 CDN 加载，用于 Markdown 渲染）
 
+## 转换器功能详解
+
+### 标题提取和处理
+
+转换器会自动从 EPUB 章节中提取完整的标题信息：
+
+1. **完整标题提取**
+   - 提取所有连续的标题标签（h1 到 h6）
+   - 多个标题用换行符组合成完整标题
+   - 示例：一个章节有标题 "CHAPTER 1" 和副标题 "The Adult Playground"，会合并为 "CHAPTER 1\nThe Adult Playground"
+
+2. **层级前缀**
+   - 根据最高标题级别自动添加前缀
+   - 用于在目录中区分标题的层级结构
+   - h1（顶级）：无前缀
+   - h2（二级）：`-` 前缀
+   - h3（三级）：`--` 前缀
+   - h4 及以下：依次增加更多 `-`
+
 ## 注意事项
 
-- 转换器只处理 EPUB 目录中的顶级章节
+- 转换器自动提取所有连续的标题标签，保留多级标题结构
+- 根据标题级别（h1/h2/h3...）自动添加层级前缀，方便在目录中显示结构
 - 图片提取到 `assets/` 目录，Markdown 中的路径会自动修正
 - 无需后端服务器 - 一切都在客户端运行
 - 阅读进度保存在浏览器本地

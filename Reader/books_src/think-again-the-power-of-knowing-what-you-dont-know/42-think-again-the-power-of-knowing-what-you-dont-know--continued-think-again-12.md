@@ -1,0 +1,1 @@
+[*](../Text/16_Chapter_7_Vaccine_Whi.xhtml#footnote-018-backlink "footnote reference") Quaker retreats have “clearness committees” that serve this very purpose, posing questions to help people crystallize their thinking and resolve their dilemmas.

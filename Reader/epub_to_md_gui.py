@@ -67,12 +67,38 @@ class EpubConverter:
         self.output_base_dir = Path(output_base_dir)
         self.output_base_dir.mkdir(exist_ok=True)
 
-    def slugify(self, text: str) -> str:
+    def slugify(self, text: str, max_length: int = None) -> str:
         """Convert text to URL-friendly slug"""
         text = text.lower()
         text = re.sub(r'[^\w\s-]', '', text)
         text = re.sub(r'[-\s]+', '-', text)
-        return text.strip('-')
+        text = text.strip('-')
+
+        if max_length and len(text) > max_length:
+            # Truncate and ensure it doesn't end with a dash
+            text = text[:max_length].rstrip('-')
+
+        return text
+
+    def truncate_slug(self, text: str, max_length: int) -> str:
+        """Truncate text and convert to slug with length limit"""
+        slug = self.slugify(text)
+        if len(slug) > max_length:
+            # Truncate and ensure it doesn't end with a dash
+            slug = slug[:max_length].rstrip('-')
+        return slug
+
+    def truncate_book_slug(self, title: str) -> str:
+        """Generate book slug with max 50 characters"""
+        return self.truncate_slug(title, 50)
+
+    def truncate_author_slug(self, author: str) -> str:
+        """Generate author slug with max 10 characters"""
+        return self.truncate_slug(author, 10)
+
+    def truncate_chapter_slug(self, title: str) -> str:
+        """Generate chapter slug with max 10 characters"""
+        return self.truncate_slug(title, 10)
 
     def extract_epub_metadata(self, epub_path: str) -> Dict:
         """Extract metadata from EPUB file"""
@@ -293,7 +319,7 @@ class EpubConverter:
 
             # Extract metadata
             metadata = self.extract_epub_metadata(epub_path)
-            book_slug = self.slugify(metadata['title'])
+            book_slug = self.truncate_book_slug(metadata['title'])
             book_id = book_slug
 
             if log_callback:
@@ -326,7 +352,7 @@ class EpubConverter:
             for chapter in chapters:
                 # Use first line of title for slug generation
                 title_first_line = chapter['title'].split('\n')[0]
-                chapter_slug = self.slugify(title_first_line)
+                chapter_slug = self.truncate_chapter_slug(title_first_line)
 
                 # Handle duplicate slugs
                 if chapter_slug in chapter_slugs_used:
@@ -335,9 +361,19 @@ class EpubConverter:
                 else:
                     chapter_slugs_used[chapter_slug] = 1
 
-                # Generate filename
+                # Generate filename with length check
                 chapter_id = f"{chapter['order']:02d}-{chapter_slug}"
                 filename = f"{chapter['order']:02d}-{book_slug}--{chapter_slug}.md"
+
+                # Ensure total filename length doesn't exceed reasonable limit (255 chars is filesystem limit)
+                # But keep it shorter for practical purposes (150 chars)
+                if len(filename) > 150:
+                    # Truncate book_slug part if needed
+                    max_book_part = 150 - \
+                        len(f"{chapter['order']:02d}-") - \
+                        len(f"--{chapter_slug}.md")
+                    truncated_book = book_slug[:max_book_part].rstrip('-')
+                    filename = f"{chapter['order']:02d}-{truncated_book}--{chapter_slug}.md"
 
                 # Convert to Markdown
                 markdown = self.html_to_markdown(
@@ -475,43 +511,59 @@ class EpubConverterGUI:
             if entry:
                 self.books_entries.append(entry)
 
-        # Generate clipboard content
+        # Update books.json
         if self.books_entries:
-            self.copy_to_clipboard()
+            self.update_books_json()
         else:
             messagebox.showwarning("No Books Converted",
                                    "No books were successfully converted.")
 
-    def copy_to_clipboard(self):
-        """Copy books.json entries to clipboard"""
-        # Format as JSON
-        json_entries = []
-        for entry in self.books_entries:
-            json_str = json.dumps(entry, ensure_ascii=False, indent=2)
-            json_entries.append(json_str)
+    def update_books_json(self):
+        """Update books.json with new entries at the beginning"""
+        books_json_path = Path("books.json")
 
-        clipboard_content = ',\n'.join(json_entries)
+        try:
+            # Read existing books.json
+            if books_json_path.exists():
+                with open(books_json_path, 'r', encoding='utf-8') as f:
+                    existing_books = json.load(f)
+            else:
+                existing_books = []
 
-        # Copy to clipboard
-        self.root.clipboard_clear()
-        self.root.clipboard_append(clipboard_content)
-        self.root.update()
+            # Add new entries at the beginning
+            updated_books = self.books_entries + existing_books
 
-        self.log("="*60 + "\n")
-        self.log(
-            f"✓ Conversion complete! {len(self.books_entries)} book(s) processed.\n")
-        self.log("✓ JSON entries copied to clipboard.\n")
-        self.log("\nPlease paste the following into books.json:\n")
-        self.log("-"*60 + "\n")
-        self.log(clipboard_content + "\n")
-        self.log("-"*60 + "\n")
+            # Write back to books.json
+            with open(books_json_path, 'w', encoding='utf-8') as f:
+                json.dump(updated_books, f, ensure_ascii=False, indent=2)
 
-        messagebox.showinfo(
-            "Conversion Complete",
-            f"Successfully converted {len(self.books_entries)} book(s)!\n\n"
-            f"JSON entries have been copied to clipboard.\n"
-            f"Please paste them into books.json."
-        )
+            self.log("="*60 + "\n")
+            self.log(
+                f"✓ Conversion complete! {len(self.books_entries)} book(s) processed.\n")
+            self.log(f"✓ books.json updated successfully.\n")
+            self.log(f"✓ New book(s) added at the beginning of the list.\n")
+
+            # Show formatted entries in log
+            self.log("\nAdded entries:\n")
+            self.log("-"*60 + "\n")
+            for entry in self.books_entries:
+                json_str = json.dumps(entry, ensure_ascii=False, indent=2)
+                self.log(json_str + "\n")
+            self.log("-"*60 + "\n")
+
+            messagebox.showinfo(
+                "Conversion Complete",
+                f"Successfully converted {len(self.books_entries)} book(s)!\n\n"
+                f"books.json has been updated.\n"
+                f"New book(s) added at the beginning."
+            )
+
+        except Exception as e:
+            self.log(f"✗ Error updating books.json: {str(e)}\n")
+            messagebox.showerror(
+                "Error",
+                f"Failed to update books.json:\n{str(e)}"
+            )
 
     def run(self):
         """Run the GUI"""
