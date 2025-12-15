@@ -185,15 +185,17 @@ class EpubConverter:
                                     try:
                                         content = epub.read(full_path).decode(
                                             'utf-8', errors='ignore')
-                                        title = self.extract_title_from_html(
+                                        title, heading_level = self.extract_title_from_html(
                                             content)
 
                                         if not title:
                                             title = f"Chapter {idx}"
+                                            heading_level = 1
 
                                         chapters.append({
                                             'order': idx,
                                             'title': title,
+                                            'heading_level': heading_level,
                                             'content': content,
                                             'original_path': full_path
                                         })
@@ -205,29 +207,41 @@ class EpubConverter:
 
         return chapters
 
-    def extract_title_from_html(self, html_content: str) -> str:
-        """Extract title from HTML content"""
+    def extract_title_from_html(self, html_content: str) -> Tuple[str, int]:
+        """Extract title from HTML content and return (title, heading_level)"""
         try:
-            # Try to find h1-h6 tags
-            for tag in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
-                match = re.search(
-                    f'<{tag}[^>]*>(.+?)</{tag}>', html_content, re.IGNORECASE | re.DOTALL)
-                if match:
-                    title = re.sub('<[^<]+?>', '', match.group(1))
-                    title = unescape(title).strip()
-                    if title:
-                        return title
+            # Try to find h1-h6 tags and collect consecutive headings
+            titles = []
+            heading_level = 1
 
-            # Try title tag
+            for tag in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+                matches = re.finditer(
+                    f'<{tag}[^>]*>(.+?)</{tag}>', html_content, re.IGNORECASE | re.DOTALL)
+                for match in matches:
+                    title_text = re.sub('<[^<]+?>', '', match.group(1))
+                    title_text = unescape(title_text).strip()
+                    if title_text:
+                        titles.append(title_text)
+                        if not heading_level or heading_level == 1:
+                            # Extract number from h1, h2, etc.
+                            heading_level = int(tag[1])
+
+                # If we found titles with this tag, use them
+                if titles:
+                    # Combine all consecutive headings with newline
+                    combined_title = '\n'.join(titles)
+                    return combined_title, heading_level
+
+            # Try title tag as fallback
             match = re.search(r'<title>(.+?)</title>',
                               html_content, re.IGNORECASE)
             if match:
-                return unescape(match.group(1)).strip()
+                return unescape(match.group(1)).strip(), 1
 
         except:
             pass
 
-        return ""
+        return "", 1
 
     def html_to_markdown(self, html_content: str, assets_dir: Path, chapter_slug: str) -> str:
         """Convert HTML to Markdown"""
@@ -310,7 +324,9 @@ class EpubConverter:
             chapter_slugs_used = {}
 
             for chapter in chapters:
-                chapter_slug = self.slugify(chapter['title'])
+                # Use first line of title for slug generation
+                title_first_line = chapter['title'].split('\n')[0]
+                chapter_slug = self.slugify(title_first_line)
 
                 # Handle duplicate slugs
                 if chapter_slug in chapter_slugs_used:
@@ -332,11 +348,17 @@ class EpubConverter:
                 with open(md_path, 'w', encoding='utf-8') as f:
                     f.write(markdown)
 
+                # Add heading level prefix to title for TOC display
+                heading_level = chapter.get('heading_level', 1)
+                level_prefix = '-' * \
+                    (heading_level - 1) if heading_level > 1 else ''
+                display_title = f"{level_prefix}{chapter['title']}" if level_prefix else chapter['title']
+
                 # Add to metadata
                 chapter_metadata.append({
                     'chapter_id': chapter_id,
                     'order': chapter['order'],
-                    'title': chapter['title'],
+                    'title': display_title,
                     'markdown_file': filename
                 })
 

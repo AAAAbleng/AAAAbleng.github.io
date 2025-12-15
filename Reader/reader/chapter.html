@@ -12,8 +12,14 @@
     <body class="reader-body">
         <div class="nav-bar">
             <div class="nav-container">
-                <a href="../index.html" class="nav-link">← 书架</a>
-                <a id="book-link" href="#" class="nav-link">目录</a>
+                <a href="../index.html" class="nav-btn nav-btn-home">
+                    <span class="nav-icon">⌘</span>
+                    <span class="nav-text">书架</span>
+                </a>
+                <button id="toc-btn" class="nav-btn nav-btn-toc">
+                    <span class="nav-icon">☰</span>
+                    <span class="nav-text">目录</span>
+                </button>
                 <div id="book-title-nav" class="book-title-nav"></div>
             </div>
         </div>
@@ -80,7 +86,6 @@
 
                     // Update navigation
                     document.getElementById('book-title-nav').textContent = currentMeta.title;
-                    document.getElementById('book-link').href = `book.html?book_id=${encodeURIComponent(bookId)}`;
                     document.title = `${currentChapter.title} - ${currentMeta.title}`;
 
                     // Render sidebar TOC
@@ -241,6 +246,18 @@
             if (isMobile()) {
                 sidebarExpandBtn.classList.add('visible');
             }
+
+            // TOC button in nav bar - expand sidebar
+            const tocBtn = document.getElementById('toc-btn');
+            tocBtn.addEventListener('click', () => {
+                if (isMobile()) {
+                    sidebar.classList.add('active');
+                    sidebarExpandBtn.classList.remove('visible');
+                } else {
+                    sidebar.classList.remove('collapsed');
+                    sidebarExpandBtn.classList.remove('visible');
+                }
+            });
 
             // Close sidebar when clicking on TOC items on mobile
             document.getElementById('sidebar-toc').addEventListener('click', (e) => {

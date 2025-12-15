@@ -319,10 +319,11 @@
 
                     container.style.display = 'grid';
 
-                    books.forEach(book => {
-                        const card = createBookCard(book);
+                    // Create cards sequentially since they need to be async
+                    for (const book of books) {
+                        const card = await createBookCard(book);
                         container.appendChild(card);
-                    });
+                    }
 
                 } catch (error) {
                     console.error('Error loading books:', error);
@@ -330,22 +331,34 @@
                 }
             }
 
-            function createBookCard(book) {
+            async function createBookCard(book) {
                 const card = document.createElement('div');
                 card.className = 'book-card';
 
                 // Get reading progress
                 const lastChapter = localStorage.getItem(`last_opened_chapter::${book.book_id}`);
-                let continueBtn = '';
+                let readUrl = '';
+                let buttonText = '开始阅读';
 
                 if (lastChapter) {
+                    // Continue from last chapter
                     const chapterData = JSON.parse(lastChapter);
-                    continueBtn = `
-                    <a href="reader/chapter.html?book_id=${encodeURIComponent(book.book_id)}&chapter_id=${encodeURIComponent(chapterData.chapter_id)}" 
-                       class="btn btn-secondary">
-                        继续阅读
-                    </a>
-                `;
+                    readUrl = `reader/chapter.html?book_id=${encodeURIComponent(book.book_id)}&chapter_id=${encodeURIComponent(chapterData.chapter_id)}`;
+                    buttonText = '继续阅读';
+                } else {
+                    // Load meta.json to get first chapter
+                    try {
+                        const metaResponse = await fetch(book.meta_path);
+                        const meta = await metaResponse.json();
+                        if (meta.chapters && meta.chapters.length > 0) {
+                            const firstChapter = meta.chapters[0];
+                            readUrl = `reader/chapter.html?book_id=${encodeURIComponent(book.book_id)}&chapter_id=${encodeURIComponent(firstChapter.chapter_id)}`;
+                        }
+                    } catch (error) {
+                        console.error('Failed to load meta.json for', book.book_id, error);
+                        readUrl = `reader/book.html?book_id=${encodeURIComponent(book.book_id)}`;
+                        buttonText = '查看目录';
+                    }
                 }
 
                 // Cover image or placeholder
@@ -361,10 +374,9 @@
                 <div class="book-title">${escapeHtml(book.title)}</div>
                 <div class="book-author">${escapeHtml(book.author)}</div>
                 <div class="book-actions">
-                    <a href="reader/book.html?book_id=${encodeURIComponent(book.book_id)}" class="btn btn-primary">
-                        查看目录
+                    <a href="${readUrl}" class="btn btn-primary">
+                        ${buttonText}
                     </a>
-                    ${continueBtn}
                 </div>
             `;
 
