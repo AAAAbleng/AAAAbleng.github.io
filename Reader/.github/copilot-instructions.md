@@ -175,7 +175,7 @@ Used for: book_id (from title), chapter_id (from chapter heading)
 **Feature Overview**: Custom text selection toolbar for mobile devices (phones/tablets) with three actions:
 1. **Select All** - Selects entire chapter content
 2. **Copy** - Copies selected text to clipboard with visual feedback
-3. **Dictionary Lookup** - Opens Eudic dictionary app via URL scheme/Intent
+3. **Dictionary Lookup** - Opens Eudic dictionary app via URL scheme, falls back to Youdao online dictionary
 
 **Device Detection** (in `chapter.html`):
 - Checks User-Agent for mobile patterns: `/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i`
@@ -190,12 +190,12 @@ Used for: book_id (from title), chapter_id (from chapter heading)
 
 **Button Implementations**:
 - **Select All**: Creates range covering entire `#chapter-content`, repositions toolbar after selection
-- **Copy**: Uses `navigator.clipboard.writeText()`, shows checkmark icon for 1 second on success
+- **Copy**: Uses `navigator.clipboard.writeText()` with `document.execCommand('copy')` fallback, shows checkmark icon for 1 second on success
 - **Dictionary**: 
-  - **Android**: Tries Intent scheme first (`intent://peek#Intent;...`), fallback to URL scheme (`eudic://peek/{word}`)
-  - **iOS**: Uses URL scheme `eudic://dict/{word}`
-  - **Desktop**: Shows alert (feature unavailable)
-  - Requires Eudic Dictionary app installed on device
+  - **All Platforms**: Tries `eudic://dict/{word}` URL scheme first
+  - **Fallback**: If Eudic app not installed or doesn't respond within 1.5s, opens Youdao mobile dictionary (`https://m.youdao.com/dict?le=eng&q={word}`) in new tab
+  - **Desktop**: Opens Youdao online dictionary directly
+  - No app installation required for basic functionality
 
 **Settings Integration**:
 - Toggle in settings modal: "Enable Text Selection Toolbar" (default: ON)
@@ -203,20 +203,11 @@ Used for: book_id (from title), chapter_id (from chapter heading)
 - Loading state: Reads from localStorage on page load, checks checkbox accordingly
 - Apply on confirm: Saves state when user clicks confirm button in settings
 
-**Eudic Dictionary API Integration**:
-- **Android Intent** (preferred for popup/LightPeek):
-  ```
-  intent://peek#Intent;
-  action=colordict.intent.action.SEARCH;
-  category=android.intent.category.DEFAULT;
-  type=text/plain;
-  component=com.eusoft.eudic/com.eusoft.dict.activity.dict.LightpeekActivity;
-  scheme=eudic;
-  S.EXTRA_QUERY={word};
-  end
-  ```
-- **URL Scheme fallback**: `eudic://peek/{word}` (Android), `eudic://dict/{word}` (iOS)
+**Dictionary Integration**:
+- **Primary**: Eudic dictionary app via URL scheme `eudic://dict/{word}`
+- **Fallback**: Youdao mobile dictionary (online) `https://m.youdao.com/dict?le=eng&q={word}`
 - Words are URL-encoded via `encodeURIComponent()`
+- App detection: Uses timeout-based detection (1.5s) - if page hasn't been taken over by app, fallback to online dictionary
 
 **CSS Styling** (in `styles.css`):
 - `.selection-toolbar`: White background, rounded corners, shadow, fade-in animation

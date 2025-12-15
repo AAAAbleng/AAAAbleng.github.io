@@ -90,22 +90,22 @@
         <div id="selection-toolbar" class="selection-toolbar" style="display: none;">
             <button id="select-all-btn" class="toolbar-btn" title="全选">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2"/>
-                    <path d="M9 11l3 3 5-5"/>
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M9 11l3 3 5-5" />
                 </svg>
             </button>
             <button id="copy-btn" class="toolbar-btn" title="复制">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                 </svg>
             </button>
             <button id="dict-btn" class="toolbar-btn" title="词典查询">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="M21 21l-4.35-4.35"/>
-                    <path d="M11 8v6"/>
-                    <path d="M8 11h6"/>
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="M21 21l-4.35-4.35" />
+                    <path d="M11 8v6" />
+                    <path d="M8 11h6" />
                 </svg>
             </button>
         </div>
@@ -430,8 +430,52 @@
 
             // Check if device is mobile (including tablets)
             function isMobileDevice() {
-                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                       (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                    (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+            }
+
+            // Disable default context menu on mobile when toolbar is enabled
+            function setupMobileContextMenuBlock() {
+                const chapterContent = document.getElementById('chapter-content');
+                if (!chapterContent) return;
+
+                // Block default context menu (long press menu)
+                chapterContent.addEventListener('contextmenu', (e) => {
+                    if (isMobileDevice() && toolbarEnabled) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }
+                });
+
+                // Prevent default selection UI on touch devices
+                chapterContent.style.webkitUserSelect = 'text';
+                chapterContent.style.userSelect = 'text';
+                
+                // Handle touch selection - show our toolbar instead of native
+                let touchStartTime = 0;
+                let touchStartPos = { x: 0, y: 0 };
+                
+                chapterContent.addEventListener('touchstart', (e) => {
+                    touchStartTime = Date.now();
+                    touchStartPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                }, { passive: true });
+
+                chapterContent.addEventListener('touchend', (e) => {
+                    if (!isMobileDevice() || !toolbarEnabled) return;
+                    
+                    const touchDuration = Date.now() - touchStartTime;
+                    
+                    // Long press detection (> 500ms)
+                    if (touchDuration > 500) {
+                        setTimeout(() => {
+                            const selection = window.getSelection();
+                            if (selection && selection.toString().trim().length > 0) {
+                                showSelectionToolbar();
+                            }
+                        }, 100);
+                    }
+                }, { passive: true });
             }
 
             // Load toolbar enabled state
@@ -441,7 +485,7 @@
                 const toolbarHint = document.getElementById('toolbar-hint');
                 const toolbarOption = document.getElementById('toolbar-setting-option');
                 const isMobile = isMobileDevice();
-                
+
                 if (!isMobile) {
                     // Desktop: disable checkbox, uncheck it, gray out everything
                     toolbarEnabled = false;
@@ -454,7 +498,7 @@
                     checkbox.disabled = false;
                     checkboxLabel.classList.remove('disabled');
                     toolbarOption.classList.remove('disabled');
-                    
+
                     const saved = localStorage.getItem('selection_toolbar_enabled');
                     if (saved !== null) {
                         toolbarEnabled = saved === 'true';
@@ -462,6 +506,9 @@
                         toolbarEnabled = true; // Default enabled for mobile
                     }
                     checkbox.checked = toolbarEnabled;
+                    
+                    // Setup context menu blocking for mobile
+                    setupMobileContextMenuBlock();
                 }
             }
 
@@ -500,7 +547,7 @@
                 // Position toolbar above selected text
                 const toolbarWidth = 160; // Approximate width
                 const toolbarHeight = 50;
-                
+
                 let left = rect.left + (rect.width / 2) - (toolbarWidth / 2);
                 let top = rect.top - toolbarHeight - 10;
 
@@ -510,7 +557,7 @@
                 if (left + toolbarWidth > window.innerWidth - padding) {
                     left = window.innerWidth - toolbarWidth - padding;
                 }
-                
+
                 // If not enough space above, show below
                 if (top < padding) {
                     top = rect.bottom + 10;
@@ -568,7 +615,7 @@
             selectAllBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                
+
                 const contentDiv = document.getElementById('chapter-content');
                 if (contentDiv) {
                     const range = document.createRange();
@@ -576,7 +623,7 @@
                     const selection = window.getSelection();
                     selection.removeAllRanges();
                     selection.addRange(range);
-                    
+
                     // Reposition toolbar after selection change
                     setTimeout(() => showSelectionToolbar(), 50);
                 }
@@ -586,25 +633,58 @@
             copyBtn.addEventListener('click', async (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                
+
                 const selection = window.getSelection();
                 const text = selection.toString();
-                
-                try {
-                    await navigator.clipboard.writeText(text);
-                    
-                    // Visual feedback
+
+                let copySuccess = false;
+
+                // 方法1: 尝试使用现代 Clipboard API
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        copySuccess = true;
+                    } catch (err) {
+                        console.log('Clipboard API failed, trying fallback:', err);
+                    }
+                }
+
+                // 方法2: 备选方案 - 使用 execCommand
+                if (!copySuccess) {
+                    try {
+                        // 创建临时 textarea
+                        const textarea = document.createElement('textarea');
+                        textarea.value = text;
+                        textarea.style.position = 'fixed';
+                        textarea.style.left = '-9999px';
+                        textarea.style.top = '0';
+                        document.body.appendChild(textarea);
+                        textarea.focus();
+                        textarea.select();
+                        
+                        copySuccess = document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        
+                        // 恢复原来的选择
+                        if (selection.rangeCount > 0) {
+                            selection.removeAllRanges();
+                        }
+                    } catch (err) {
+                        console.error('execCommand copy failed:', err);
+                    }
+                }
+
+                if (copySuccess) {
+                    // Visual feedback - 显示成功图标
                     const originalHTML = copyBtn.innerHTML;
                     copyBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#48bb78" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>';
-                    
+
                     setTimeout(() => {
                         copyBtn.innerHTML = originalHTML;
                         hideSelectionToolbar();
-                        selection.removeAllRanges();
                     }, 1000);
-                } catch (err) {
-                    console.error('Failed to copy:', err);
-                    alert('复制失败');
+                } else {
+                    alert('复制失败，请手动复制');
                 }
             });
 
@@ -612,39 +692,24 @@
             dictBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                
+
                 const selection = window.getSelection();
                 const text = selection.toString().trim();
-                
+
                 if (text.length === 0) return;
 
-                // Detect platform
-                const isAndroid = /Android/i.test(navigator.userAgent);
-                const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-                if (isAndroid) {
-                    // Android: Use Intent scheme for popup (LightPeek)
-                    const intentUrl = `intent://peek#Intent;action=colordict.intent.action.SEARCH;category=android.intent.category.DEFAULT;type=text/plain;component=com.eusoft.eudic/com.eusoft.dict.activity.dict.LightpeekActivity;scheme=eudic;S.EXTRA_QUERY=${encodeURIComponent(text)};end`;
-                    
-                    // Try opening with intent
-                    window.location.href = intentUrl;
-                    
-                    // Fallback to URL scheme if intent fails
-                    setTimeout(() => {
-                        window.location.href = `eudic://peek/${encodeURIComponent(text)}`;
-                    }, 500);
-                } else if (isIOS) {
-                    // iOS: Use URL scheme
-                    window.location.href = `eudic://dict/${encodeURIComponent(text)}`;
-                } else {
-                    // Desktop or unsupported device - open in new window
-                    alert('词典查询功能仅支持移动设备（需安装欧路词典App）');
-                }
+                const word = encodeURIComponent(text);
                 
+                // 欧路词典 URL Scheme - 使用 peek 模式
+                const eudicUrl = `eudic://peek/${word}`;
+                
+                // 直接打开欧路词典
+                window.location.href = eudicUrl;
+
                 // Hide toolbar after action
                 setTimeout(() => {
                     hideSelectionToolbar();
-                }, 300);
+                }, 800);
             });
 
             // Initialize toolbar state

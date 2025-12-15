@@ -874,11 +874,28 @@ body {
     animation: toolbarFadeIn 0.15s ease-out;
 }
 
+/* Disable native selection handles on mobile */
+@media (max-width: 768px) {
+    .chapter-content {
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .chapter-content::selection {
+        background: rgba(102, 126, 234, 0.3);
+    }
+    
+    .chapter-content::-moz-selection {
+        background: rgba(102, 126, 234, 0.3);
+    }
+}
+
 @keyframes toolbarFadeIn {
     from {
         opacity: 0;
         transform: translateY(-8px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
