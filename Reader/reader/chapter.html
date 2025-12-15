@@ -39,6 +39,7 @@
         </div>
 
         <button id="sidebar-toggle-mobile" class="sidebar-toggle-mobile">☰</button>
+        <button id="sidebar-expand-btn" class="sidebar-expand-btn">❯</button>
 
         <script src="reader.js"></script>
         <script>
@@ -179,36 +180,66 @@
                 });
             }
 
-            // Sidebar toggle for mobile
-            const sidebarToggle = document.getElementById('sidebar-toggle-mobile');
+            // Sidebar toggle logic
+            const sidebarToggleMobile = document.getElementById('sidebar-toggle-mobile');
+            const sidebarExpandBtn = document.getElementById('sidebar-expand-btn');
             const sidebar = document.getElementById('sidebar');
             const toggleBtn = document.getElementById('toggle-sidebar');
             const content = document.getElementById('content');
 
-            sidebarToggle.addEventListener('click', (e) => {
+            // Check if we're on mobile
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+
+            // Mobile: Toggle sidebar with floating button
+            sidebarToggleMobile.addEventListener('click', (e) => {
                 e.stopPropagation();
                 sidebar.classList.toggle('active');
             });
 
+            // Desktop: Collapse sidebar with X button
             toggleBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('collapsed');
-                sidebar.classList.remove('active');
+                if (isMobile()) {
+                    // On mobile, just close the sidebar
+                    sidebar.classList.remove('active');
+                } else {
+                    // On desktop, collapse the sidebar
+                    sidebar.classList.toggle('collapsed');
+                    sidebarExpandBtn.classList.toggle('visible', sidebar.classList.contains('collapsed'));
+                }
             });
 
-            // Close sidebar when clicking on content area (mobile only)
+            // Desktop: Expand sidebar with edge button
+            sidebarExpandBtn.addEventListener('click', () => {
+                sidebar.classList.remove('collapsed');
+                sidebarExpandBtn.classList.remove('visible');
+            });
+
+            // Mobile: Close sidebar when clicking on content area
             content.addEventListener('click', () => {
-                if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+                if (isMobile() && sidebar.classList.contains('active')) {
                     sidebar.classList.remove('active');
                 }
             });
 
-            // Close sidebar when clicking on a TOC item (mobile only)
-            document.querySelectorAll('.toc-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (window.innerWidth <= 768) {
-                        sidebar.classList.remove('active');
-                    }
-                });
+            // Handle window resize: reset states when switching between mobile and desktop
+            window.addEventListener('resize', () => {
+                if (isMobile()) {
+                    // Switching to mobile: hide desktop expand button, reset collapsed state
+                    sidebarExpandBtn.classList.remove('visible');
+                    sidebar.classList.remove('collapsed');
+                } else {
+                    // Switching to desktop: hide mobile active state
+                    sidebar.classList.remove('active');
+                }
+            });
+
+            // Mobile: Close sidebar when clicking on TOC items (using event delegation for dynamic content)
+            document.getElementById('sidebar-toc').addEventListener('click', (e) => {
+                if (isMobile() && e.target.closest('.toc-item')) {
+                    sidebar.classList.remove('active');
+                }
             });
         </script>
     </body>
