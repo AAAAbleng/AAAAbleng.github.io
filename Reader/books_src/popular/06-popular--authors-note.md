@@ -1,0 +1,7 @@
+## AUTHOR’S NOTE
+
+I began working on this book in earnest about two years prior to its completion. But in a very real sense, my research began many years earlier. Perhaps as early as kindergarten. I was always drawn to the study of peer relationships and to psychological science more broadly. I recall my attempt to create an IQ test, using tater tots, on the lunch line in grade school; I posited stage models of adjustment to midterms while in eighth grade; and as a teenager, I developed my own taxonomy for different levels of popularity. These examples offer two revelations relevant to this book. First, I was always, without question, a psychology nerd. And second, long before I imagined I would ever write _Popular_ , I had been collecting vignettes from people who never knew that their experiences would become apt examples in the pages that follow. To protect their privacy, and as is customary in the field of clinical psychology, I have thus de-identified all stories herein by replacing names and trivial, nonessential details. To further ensure confidentiality for some particularly sensitive examples, the stories of Steve and Peggy represent composites based on several similar experiences.
+
+A few stories have not been de-identified. My star student at Yale is indeed named Daniel Clemens. Studies and quotes from public figures and celebrities similarly have remained unmasked. Last, details included in stories about my own life also remain unchanged, to the best of my recollection.
+
+## 

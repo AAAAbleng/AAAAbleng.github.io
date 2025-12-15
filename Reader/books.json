@@ -1,0 +1,9 @@
+[
+    {
+        "book_id": "popular",
+        "title": "Popular",
+        "author": "Mitch Prinstein",
+        "description": "<b>A leading clinical psychologist examines why popularity matters to adults as much as it did when they were in high school&#8212;and how we all can avoid the pitfalls that come with the wrong type of popularity</b><br><i>Popular</i> examines why popularity plays such a key role in our development and, ultimately, our happiness. Surprisingly, the most conventionally popular people are often not among the happiest. There is more than one type of popularity, and many of us still wish for the wrong one. As children, we strive to be likable, which can offer real benefits throughout our lives. In adolescence, however, a new form of popularity suddenly emerges that reflects status, power, influence, and notoriety that can be quantified by Facebook likes or YouTube hits and is often addictive.<br> <br>We cannot realistically ignore our natural human social impulses to be included and well regarded by others, but we can learn to manage them in beneficial and gratifying ways....",
+        "meta_path": "books_src/popular/meta.json"
+    }
+]

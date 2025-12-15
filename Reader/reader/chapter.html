@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>阅读</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </head>
+
+    <body class="reader-body">
+        <div class="nav-bar">
+            <div class="nav-container">
+                <a href="../index.html" class="nav-link">← 书架</a>
+                <a id="book-link" href="#" class="nav-link">目录</a>
+                <div id="book-title-nav" class="book-title-nav"></div>
+            </div>
+        </div>
+
+        <div class="reader-container">
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3>目录</h3>
+                    <button id="toggle-sidebar" class="toggle-btn">×</button>
+                </div>
+                <nav id="sidebar-toc" class="sidebar-toc"></nav>
+            </aside>
+
+            <main class="content" id="content">
+                <div id="loading" class="loading">加载中...</div>
+                <article id="chapter-content" class="chapter-content" style="display: none;"></article>
+
+                <div id="chapter-nav" class="chapter-nav" style="display: none;">
+                    <a id="prev-chapter" class="btn btn-nav" style="display: none;">← 上一章</a>
+                    <a id="next-chapter" class="btn btn-nav" style="display: none;">下一章 →</a>
+                </div>
+            </main>
+        </div>
+
+        <button id="sidebar-toggle-mobile" class="sidebar-toggle-mobile">☰</button>
+
+        <script src="reader.js"></script>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookId = urlParams.get('book_id');
+            const chapterId = urlParams.get('chapter_id');
+
+            let currentMeta = null;
+            let currentChapter = null;
+            let currentBook = null;
+
+            if (!bookId || !chapterId) {
+                document.getElementById('loading').textContent = '错误: 缺少必要参数';
+            } else {
+                loadChapter(bookId, chapterId);
+            }
+
+            async function loadChapter(bookId, chapterId) {
+                try {
+                    // Load books.json
+                    const booksResponse = await fetch('../books.json');
+                    const books = await booksResponse.json();
+                    currentBook = books.find(b => b.book_id === bookId);
+
+                    if (!currentBook) {
+                        throw new Error('未找到该书籍');
+                    }
+
+                    // Load meta.json
+                    const metaResponse = await fetch('../' + currentBook.meta_path);
+                    currentMeta = await metaResponse.json();
+
+                    // Find current chapter
+                    currentChapter = currentMeta.chapters.find(ch => ch.chapter_id === chapterId);
+
+                    if (!currentChapter) {
+                        throw new Error('未找到该章节');
+                    }
+
+                    // Update navigation
+                    document.getElementById('book-title-nav').textContent = currentMeta.title;
+                    document.getElementById('book-link').href = `book.html?book_id=${encodeURIComponent(bookId)}`;
+                    document.title = `${currentChapter.title} - ${currentMeta.title}`;
+
+                    // Render sidebar TOC
+                    renderSidebarTOC(bookId, chapterId);
+
+                    // Load markdown content
+                    const bookDir = currentBook.meta_path.replace('/meta.json', '');
+                    const markdownPath = `../${bookDir}/${currentChapter.markdown_file}`;
+                    const mdResponse = await fetch(markdownPath);
+                    const mdText = await mdResponse.text();
+
+                    // Convert markdown to HTML
+                    const html = marked.parse(mdText);
+
+                    // Display content
+                    document.getElementById('loading').style.display = 'none';
+                    const contentDiv = document.getElementById('chapter-content');
+                    contentDiv.innerHTML = html;
+                    contentDiv.style.display = 'block';
+
+                    // Setup chapter navigation
+                    setupChapterNavigation(bookId, chapterId);
+
+                    // Restore scroll position
+                    restoreScrollPosition(bookId, chapterId);
+
+                    // Save reading progress
+                    saveLastOpenedChapter(bookId, chapterId);
+
+                    // Track scroll position
+                    setupScrollTracking(bookId, chapterId);
+
+                } catch (error) {
+                    console.error('Error loading chapter:', error);
+                    document.getElementById('loading').textContent = '加载失败: ' + error.message;
+                }
+            }
+
+            function renderSidebarTOC(bookId, currentChapterId) {
+                const sidebar = document.getElementById('sidebar-toc');
+                sidebar.innerHTML = '';
+
+                currentMeta.chapters.forEach(chapter => {
+                    const link = document.createElement('a');
+                    link.href = `chapter.html?book_id=${encodeURIComponent(bookId)}&chapter_id=${encodeURIComponent(chapter.chapter_id)}`;
+                    link.className = 'toc-item';
+                    if (chapter.chapter_id === currentChapterId) {
+                        link.classList.add('active');
+                    }
+
+                    const number = document.createElement('span');
+                    number.className = 'toc-number';
+                    number.textContent = chapter.order;
+
+                    const title = document.createElement('span');
+                    title.textContent = chapter.title;
+
+                    link.appendChild(number);
+                    link.appendChild(title);
+                    sidebar.appendChild(link);
+                });
+            }
+
+            function setupChapterNavigation(bookId, chapterId) {
+                const currentIndex = currentMeta.chapters.findIndex(ch => ch.chapter_id === chapterId);
+                const navDiv = document.getElementById('chapter-nav');
+                const prevBtn = document.getElementById('prev-chapter');
+                const nextBtn = document.getElementById('next-chapter');
+
+                navDiv.style.display = 'flex';
+
+                // Previous chapter
+                if (currentIndex > 0) {
+                    const prevChapter = currentMeta.chapters[currentIndex - 1];
+                    prevBtn.href = `chapter.html?book_id=${encodeURIComponent(bookId)}&chapter_id=${encodeURIComponent(prevChapter.chapter_id)}`;
+                    prevBtn.style.display = 'inline-block';
+                    prevBtn.innerHTML = `← ${prevChapter.title}`;
+                }
+
+                // Next chapter
+                if (currentIndex < currentMeta.chapters.length - 1) {
+                    const nextChapter = currentMeta.chapters[currentIndex + 1];
+                    nextBtn.href = `chapter.html?book_id=${encodeURIComponent(bookId)}&chapter_id=${encodeURIComponent(nextChapter.chapter_id)}`;
+                    nextBtn.style.display = 'inline-block';
+                    nextBtn.innerHTML = `${nextChapter.title} →`;
+                }
+            }
+
+            function setupScrollTracking(bookId, chapterId) {
+                let scrollTimeout;
+                window.addEventListener('scroll', () => {
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        saveScrollPosition(bookId, chapterId, window.scrollY);
+                    }, 500);
+                });
+            }
+
+            // Sidebar toggle for mobile
+            const sidebarToggle = document.getElementById('sidebar-toggle-mobile');
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggle-sidebar');
+            const content = document.getElementById('content');
+
+            sidebarToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                sidebar.classList.toggle('active');
+            });
+
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+                sidebar.classList.remove('active');
+            });
+
+            // Close sidebar when clicking on content area (mobile only)
+            content.addEventListener('click', () => {
+                if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+
+            // Close sidebar when clicking on a TOC item (mobile only)
+            document.querySelectorAll('.toc-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,151 @@
+{
+  "book_id": "popular",
+  "title": "Popular",
+  "author": "Mitch Prinstein",
+  "chapters": [
+    {
+      "chapter_id": "01-popular",
+      "order": 1,
+      "title": "Popular",
+      "markdown_file": "01-popular--popular.md"
+    },
+    {
+      "chapter_id": "02-popular-2",
+      "order": 2,
+      "title": "Popular",
+      "markdown_file": "02-popular--popular-2.md"
+    },
+    {
+      "chapter_id": "03-popular-3",
+      "order": 3,
+      "title": "Popular",
+      "markdown_file": "03-popular--popular-3.md"
+    },
+    {
+      "chapter_id": "04-popular-4",
+      "order": 4,
+      "title": "Popular",
+      "markdown_file": "04-popular--popular-4.md"
+    },
+    {
+      "chapter_id": "05-contents",
+      "order": 5,
+      "title": "CONTENTS",
+      "markdown_file": "05-popular--contents.md"
+    },
+    {
+      "chapter_id": "06-authors-note",
+      "order": 6,
+      "title": "AUTHOR’S NOTE",
+      "markdown_file": "06-popular--authors-note.md"
+    },
+    {
+      "chapter_id": "07-introduction",
+      "order": 7,
+      "title": "INTRODUCTION",
+      "markdown_file": "07-popular--introduction.md"
+    },
+    {
+      "chapter_id": "08-part-i",
+      "order": 8,
+      "title": "PART I",
+      "markdown_file": "08-popular--part-i.md"
+    },
+    {
+      "chapter_id": "09-chapter-1",
+      "order": 9,
+      "title": "CHAPTER 1",
+      "markdown_file": "09-popular--chapter-1.md"
+    },
+    {
+      "chapter_id": "10-chapter-2",
+      "order": 10,
+      "title": "CHAPTER 2",
+      "markdown_file": "10-popular--chapter-2.md"
+    },
+    {
+      "chapter_id": "11-chapter-3",
+      "order": 11,
+      "title": "CHAPTER 3",
+      "markdown_file": "11-popular--chapter-3.md"
+    },
+    {
+      "chapter_id": "12-part-ii",
+      "order": 12,
+      "title": "PART II",
+      "markdown_file": "12-popular--part-ii.md"
+    },
+    {
+      "chapter_id": "13-chapter-4",
+      "order": 13,
+      "title": "CHAPTER 4",
+      "markdown_file": "13-popular--chapter-4.md"
+    },
+    {
+      "chapter_id": "14-chapter-5",
+      "order": 14,
+      "title": "CHAPTER 5",
+      "markdown_file": "14-popular--chapter-5.md"
+    },
+    {
+      "chapter_id": "15-part-iii",
+      "order": 15,
+      "title": "PART III",
+      "markdown_file": "15-popular--part-iii.md"
+    },
+    {
+      "chapter_id": "16-chapter-6",
+      "order": 16,
+      "title": "CHAPTER 6",
+      "markdown_file": "16-popular--chapter-6.md"
+    },
+    {
+      "chapter_id": "17-chapter-7",
+      "order": 17,
+      "title": "CHAPTER 7",
+      "markdown_file": "17-popular--chapter-7.md"
+    },
+    {
+      "chapter_id": "18-chapter-8",
+      "order": 18,
+      "title": "CHAPTER 8",
+      "markdown_file": "18-popular--chapter-8.md"
+    },
+    {
+      "chapter_id": "19-chapter-9",
+      "order": 19,
+      "title": "CHAPTER 9",
+      "markdown_file": "19-popular--chapter-9.md"
+    },
+    {
+      "chapter_id": "20-acknowledgments",
+      "order": 20,
+      "title": "ACKNOWLEDGMENTS",
+      "markdown_file": "20-popular--acknowledgments.md"
+    },
+    {
+      "chapter_id": "21-notes",
+      "order": 21,
+      "title": "NOTES",
+      "markdown_file": "21-popular--notes.md"
+    },
+    {
+      "chapter_id": "22-index",
+      "order": 22,
+      "title": "INDEX",
+      "markdown_file": "22-popular--index.md"
+    },
+    {
+      "chapter_id": "23-popular-5",
+      "order": 23,
+      "title": "Popular",
+      "markdown_file": "23-popular--popular-5.md"
+    },
+    {
+      "chapter_id": "24-whats-next-on-your-reading-list",
+      "order": 24,
+      "title": "What’s next on your reading list?",
+      "markdown_file": "24-popular--whats-next-on-your-reading-list.md"
+    }
+  ]
+}
