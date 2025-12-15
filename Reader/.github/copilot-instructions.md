@@ -49,6 +49,8 @@ EPUB Files → epub_to_md_gui.py → books_src/{book_id}/
 **localStorage Keys** - All prefixed for scope:
 - `reading_progress::{book_id}::{chapter_id}` → `{scrollY, timestamp}`
 - `last_opened_chapter::{book_id}` → `{chapter_id, timestamp}`
+- `font_scale` → Integer (20-200), default 100
+- `selection_toolbar_enabled` → Boolean string ('true'/'false'), default 'true'
 
 ## Critical Developer Workflows
 
@@ -169,6 +171,59 @@ Used for: book_id (from title), chapter_id (from chapter heading)
 - Called in `chapter.html`: `marked.parse(mdText)` → HTML
 - Images in markdown expect relative paths: `assets/image.png`
 
+### Mobile Text Selection Toolbar
+**Feature Overview**: Custom text selection toolbar for mobile devices (phones/tablets) with three actions:
+1. **Select All** - Selects entire chapter content
+2. **Copy** - Copies selected text to clipboard with visual feedback
+3. **Dictionary Lookup** - Opens Eudic dictionary app via URL scheme/Intent
+
+**Device Detection** (in `chapter.html`):
+- Checks User-Agent for mobile patterns: `/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i`
+- Also checks `navigator.maxTouchPoints > 2` for touch-capable devices
+- Toolbar only appears on mobile devices when enabled
+
+**Toolbar Behavior**:
+- **Show**: Appears above selected text after 100ms debounce on `selectionchange` event
+- **Position**: Centered above selection, falls back to below if insufficient space above
+- **Hide**: On scroll, clicking outside, or after successful action
+- **Positioning**: Absolute positioning with `scrollX`/`scrollY` offsets, viewport boundary checks
+
+**Button Implementations**:
+- **Select All**: Creates range covering entire `#chapter-content`, repositions toolbar after selection
+- **Copy**: Uses `navigator.clipboard.writeText()`, shows checkmark icon for 1 second on success
+- **Dictionary**: 
+  - **Android**: Tries Intent scheme first (`intent://peek#Intent;...`), fallback to URL scheme (`eudic://peek/{word}`)
+  - **iOS**: Uses URL scheme `eudic://dict/{word}`
+  - **Desktop**: Shows alert (feature unavailable)
+  - Requires Eudic Dictionary app installed on device
+
+**Settings Integration**:
+- Toggle in settings modal: "Enable Text Selection Toolbar" (default: ON)
+- Saved to `localStorage.selection_toolbar_enabled`
+- Loading state: Reads from localStorage on page load, checks checkbox accordingly
+- Apply on confirm: Saves state when user clicks confirm button in settings
+
+**Eudic Dictionary API Integration**:
+- **Android Intent** (preferred for popup/LightPeek):
+  ```
+  intent://peek#Intent;
+  action=colordict.intent.action.SEARCH;
+  category=android.intent.category.DEFAULT;
+  type=text/plain;
+  component=com.eusoft.eudic/com.eusoft.dict.activity.dict.LightpeekActivity;
+  scheme=eudic;
+  S.EXTRA_QUERY={word};
+  end
+  ```
+- **URL Scheme fallback**: `eudic://peek/{word}` (Android), `eudic://dict/{word}` (iOS)
+- Words are URL-encoded via `encodeURIComponent()`
+
+**CSS Styling** (in `styles.css`):
+- `.selection-toolbar`: White background, rounded corners, shadow, fade-in animation
+- `.toolbar-btn`: 44x44px touch targets, SVG icons, hover effects (purple background)
+- `.settings-checkbox`: Custom checkbox styling with accent color
+- Responsive: Button sizes reduce to 42x42px on mobile (<768px)
+
 ## Integration Points
 
 ### EPUB Converter Dependencies
@@ -194,6 +249,11 @@ Used for: book_id (from title), chapter_id (from chapter heading)
 | `reader/reader.js` | Progress utilities | localStorage schema, helper functions |
 | `reader/styles.css` | All styling | Responsive design, themes |
 | `books_src/{id}/meta.json` | Per-book chapters metadata | Auto-generated; edit if manual corrections needed |
+
+**New Features (Latest Version)**:
+- **Mobile Text Selection Toolbar**: Appears on mobile devices when text is selected in `chapter.html`
+- **Settings Panel**: Font size adjustment (20%-200%) and toolbar toggle in settings modal
+- **Eudic Dictionary Integration**: Direct lookup via URL scheme/Intent for selected text
 
 ## Common Pitfalls & Solutions
 

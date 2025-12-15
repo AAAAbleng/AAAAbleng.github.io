@@ -202,6 +202,18 @@ python -m http.server 8000
 - 上一章/下一章导航
 - 自动恢复滚动位置
 - 每 500 毫秒保存一次阅读进度
+- **设置功能**：
+  - 字体大小调节：20%-200% 缩放比例，适应不同阅读偏好
+  - 移动端文字选中工具栏开关（默认开启）
+- **移动端特性**（仅手机和平板）：
+  - 选中文字后自动显示操作工具栏：
+    - 📋 **全选**：选中整个章节内容
+    - 📄 **复制**：复制选中文字到剪贴板（带复制成功反馈）
+    - 🔍 **词典**：调用欧路词典App查询选中内容（需安装欧路词典）
+      - Android：优先使用Intent调用浮窗查词，失败则使用URL Scheme
+      - iOS：使用URL Scheme (`eudic://dict/{word}`)
+  - 工具栏位于选中文字上方，自动适配屏幕边界
+  - 滚动或点击其他区域自动隐藏
 
 ### 阅读进度（localStorage）
 
@@ -210,6 +222,8 @@ python -m http.server 8000
 **键名：**
 - `reading_progress::{book_id}::{chapter_id}` → `{ scrollY, timestamp }`
 - `last_opened_chapter::{book_id}` → `{ chapter_id, timestamp }`
+- `font_scale` → 字体缩放比例（整数，20-200，默认100）
+- `selection_toolbar_enabled` → 移动端文字工具栏开关（布尔字符串，默认'true'）
 
 **工具函数（在 reader.js 中）：**
 - `saveScrollPosition(bookId, chapterId, scrollY)` - 保存滚动位置
