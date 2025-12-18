@@ -414,5 +414,32 @@
     "app": {
         "pwaUpdatePromptTitle": "App update",
         "pwaUpdatePromptBody": "Click \"OK\" to complete update."
+    },
+    "watchHistory": {
+        "title": "观看历史",
+        "search": "按名称搜索...",
+        "name": "名称",
+        "firstWatched": "首次观看",
+        "totalDuration": "总时长",
+        "lastPosition": "上次位置",
+        "subtitle": "字幕",
+        "actions": "操作",
+        "delete": "删除",
+        "deleteSelected": "删除所选",
+        "deleteOlderThan": "删除几天前的记录",
+        "export": "导出历史",
+        "import": "导入历史",
+        "empty": "暂无观看历史",
+        "rowsPerPage": "每页行数",
+        "confirmDeleteTitle": "确认删除",
+        "confirmDeleteMessage": "确定要删除 {{count}} 条选中的记录吗？",
+        "confirmDeleteOldTitle": "删除旧记录",
+        "confirmDeleteOldMessage": "确定要删除 {{days}} 天前的所有记录吗？",
+        "openVideo": "打开视频",
+        "openVideoHint": "请选择文件 \"{{fileName}}\" 以打开它。",
+        "resumeTitle": "继续播放",
+        "resumeMessage": "您之前观看了 \"{{fileName}}\"，已看到 {{position}}。是否从此处继续？",
+        "startOver": "从头开始",
+        "resume": "继续"
     }
 }

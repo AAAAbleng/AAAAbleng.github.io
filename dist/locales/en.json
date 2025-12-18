@@ -414,5 +414,32 @@
     "app": {
         "pwaUpdatePromptTitle": "App update",
         "pwaUpdatePromptBody": "Click \"OK\" to complete update."
+    },
+    "watchHistory": {
+        "title": "Watch History",
+        "search": "Search by name...",
+        "name": "Name",
+        "firstWatched": "First Watched",
+        "totalDuration": "Duration",
+        "lastPosition": "Last Position",
+        "subtitle": "Subtitle",
+        "actions": "Actions",
+        "delete": "Delete",
+        "deleteSelected": "Delete Selected",
+        "deleteOlderThan": "Delete older than (days)",
+        "export": "Export History",
+        "import": "Import History",
+        "empty": "No watch history yet.",
+        "rowsPerPage": "Rows per page",
+        "confirmDeleteTitle": "Confirm Delete",
+        "confirmDeleteMessage": "Are you sure you want to delete {{count}} selected item(s)?",
+        "confirmDeleteOldTitle": "Delete Old Records",
+        "confirmDeleteOldMessage": "Are you sure you want to delete all records older than {{days}} days?",
+        "openVideo": "Open Video",
+        "openVideoHint": "Please select the file \"{{fileName}}\" to open it.",
+        "resumeTitle": "Resume Playback",
+        "resumeMessage": "You previously watched \"{{fileName}}\" up to {{position}}. Would you like to continue from there?",
+        "startOver": "Start Over",
+        "resume": "Resume"
     }
 }
