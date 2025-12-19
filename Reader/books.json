@@ -1,5 +1,12 @@
 [
   {
+    "book_id": "reframe-your-brain-the-user-interface-for-happines",
+    "title": "Reframe Your Brain: The User Interface for Happiness and Success",
+    "author": "Scott Adams",
+    "cover_image": "books_src/reframe-your-brain-the-user-interface-for-happines/assets/cover.jpeg",
+    "meta_path": "books_src/reframe-your-brain-the-user-interface-for-happines/meta.json"
+  },
+  {
     "book_id": "summary-think-again-the-power-of-knowing-what-you",
     "title": "Summary: Think Again - the Power of Knowing What You Don’t Know by Adam Grant",
     "author": "The 60 Minutes Summary",

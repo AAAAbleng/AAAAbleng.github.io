@@ -451,11 +451,11 @@
                 // Prevent default selection UI on touch devices
                 chapterContent.style.webkitUserSelect = 'text';
                 chapterContent.style.userSelect = 'text';
-                
+
                 // Handle touch selection - show our toolbar instead of native
                 let touchStartTime = 0;
                 let touchStartPos = { x: 0, y: 0 };
-                
+
                 chapterContent.addEventListener('touchstart', (e) => {
                     touchStartTime = Date.now();
                     touchStartPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -463,9 +463,9 @@
 
                 chapterContent.addEventListener('touchend', (e) => {
                     if (!isMobileDevice() || !toolbarEnabled) return;
-                    
+
                     const touchDuration = Date.now() - touchStartTime;
-                    
+
                     // Long press detection (> 500ms)
                     if (touchDuration > 500) {
                         setTimeout(() => {
@@ -506,7 +506,7 @@
                         toolbarEnabled = true; // Default enabled for mobile
                     }
                     checkbox.checked = toolbarEnabled;
-                    
+
                     // Setup context menu blocking for mobile
                     setupMobileContextMenuBlock();
                 }
@@ -661,10 +661,10 @@
                         document.body.appendChild(textarea);
                         textarea.focus();
                         textarea.select();
-                        
+
                         copySuccess = document.execCommand('copy');
                         document.body.removeChild(textarea);
-                        
+
                         // 恢复原来的选择
                         if (selection.rangeCount > 0) {
                             selection.removeAllRanges();
@@ -699,10 +699,10 @@
                 if (text.length === 0) return;
 
                 const word = encodeURIComponent(text);
-                
+
                 // 欧路词典 URL Scheme - 使用 peek 模式
                 const eudicUrl = `eudic://peek/${word}`;
-                
+
                 // 直接打开欧路词典
                 window.location.href = eudicUrl;
 
