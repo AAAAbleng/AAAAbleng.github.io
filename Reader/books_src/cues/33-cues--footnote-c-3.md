@@ -1,0 +1,1 @@
+[*](11_Chapter_3_The_Body_La.xhtml#footnote-008-backlink "footnote reference") Always be on the lookout for context explanations. For example, did the air conditioning just turn on? Someone might suddenly cross their arms when they’re cold. We will talk more about context later.

@@ -1,0 +1,355 @@
+{
+  "book_id": "cues",
+  "title": "Cues",
+  "author": "Vanessa Van Edwards",
+  "chapters": [
+    {
+      "chapter_id": "01-cover-cues",
+      "order": 1,
+      "title": "Cover, Cues",
+      "markdown_file": "01-cues--cover-cues.md"
+    },
+    {
+      "chapter_id": "02-title-page",
+      "order": 2,
+      "title": "Title Page, Cues",
+      "markdown_file": "02-cues--title-page.md"
+    },
+    {
+      "chapter_id": "03-copyright",
+      "order": 3,
+      "title": "Copyright, Cues",
+      "markdown_file": "03-cues--copyright.md"
+    },
+    {
+      "chapter_id": "04-dedication",
+      "order": 4,
+      "title": "Dedication, Cues",
+      "markdown_file": "04-cues--dedication.md"
+    },
+    {
+      "chapter_id": "05-continued",
+      "order": 5,
+      "title": "Continued, Cues",
+      "markdown_file": "05-cues--continued.md"
+    },
+    {
+      "chapter_id": "06-contents",
+      "order": 6,
+      "title": "Contents",
+      "markdown_file": "06-cues--contents.md"
+    },
+    {
+      "chapter_id": "07-introducti",
+      "order": 7,
+      "title": "-INTRODUCTION\nThe Signals That Are Secretly Shaping You",
+      "markdown_file": "07-cues--introducti.md"
+    },
+    {
+      "chapter_id": "08-chapter-1",
+      "order": 8,
+      "title": "-CHAPTER 1\nCue for Charisma",
+      "markdown_file": "08-cues--chapter-1.md"
+    },
+    {
+      "chapter_id": "09-chapter-2",
+      "order": 9,
+      "title": "-CHAPTER 2\nHow Cues Work",
+      "markdown_file": "09-cues--chapter-2.md"
+    },
+    {
+      "chapter_id": "10-part-one",
+      "order": 10,
+      "title": "PART ONE\nNonverbal Cues",
+      "markdown_file": "10-cues--part-one.md"
+    },
+    {
+      "chapter_id": "11-chapter-3",
+      "order": 11,
+      "title": "-CHAPTER 3\nThe Body Language of Leaders",
+      "markdown_file": "11-cues--chapter-3.md"
+    },
+    {
+      "chapter_id": "12-chapter-4",
+      "order": 12,
+      "title": "-CHAPTER 4\nThe Wow Factor",
+      "markdown_file": "12-cues--chapter-4.md"
+    },
+    {
+      "chapter_id": "13-chapter-5",
+      "order": 13,
+      "title": "-CHAPTER 5\nHow to Look Powerful",
+      "markdown_file": "13-cues--chapter-5.md"
+    },
+    {
+      "chapter_id": "14-chapter-6",
+      "order": 14,
+      "title": "-CHAPTER 6\nHow to Spot a Bad Guy . . . and Not Be One Yourself",
+      "markdown_file": "14-cues--chapter-6.md"
+    },
+    {
+      "chapter_id": "15-part-two",
+      "order": 15,
+      "title": "PART TWO\nVocal, Verbal, and Imagery Cues",
+      "markdown_file": "15-cues--part-two.md"
+    },
+    {
+      "chapter_id": "16-vocal-cues",
+      "order": 16,
+      "title": "Vocal Cues",
+      "markdown_file": "16-cues--vocal-cues.md"
+    },
+    {
+      "chapter_id": "17-chapter-7",
+      "order": 17,
+      "title": "-CHAPTER 7\nSound Powerful",
+      "markdown_file": "17-cues--chapter-7.md"
+    },
+    {
+      "chapter_id": "18-chapter-8",
+      "order": 18,
+      "title": "-CHAPTER 8\nVocal Likability",
+      "markdown_file": "18-cues--chapter-8.md"
+    },
+    {
+      "chapter_id": "19-verbal-cue",
+      "order": 19,
+      "title": "Verbal Cues",
+      "markdown_file": "19-cues--verbal-cue.md"
+    },
+    {
+      "chapter_id": "20-chapter-9",
+      "order": 20,
+      "title": "-CHAPTER 9\nHow to Communicate with Charisma",
+      "markdown_file": "20-cues--chapter-9.md"
+    },
+    {
+      "chapter_id": "21-imagery-cu",
+      "order": 21,
+      "title": "Imagery Cues",
+      "markdown_file": "21-cues--imagery-cu.md"
+    },
+    {
+      "chapter_id": "22-chapter-10",
+      "order": 22,
+      "title": "-CHAPTER 10\nCreating a Powerful Visual Presence",
+      "markdown_file": "22-cues--chapter-10.md"
+    },
+    {
+      "chapter_id": "23-conclusion",
+      "order": 23,
+      "title": "-CONCLUSION\nCues Best Practices",
+      "markdown_file": "23-cues--conclusion.md"
+    },
+    {
+      "chapter_id": "24-corporate",
+      "order": 24,
+      "title": "Corporate Workshops",
+      "markdown_file": "24-cues--corporate.md"
+    },
+    {
+      "chapter_id": "25-digital-bo",
+      "order": 25,
+      "title": "Digital Bonuses",
+      "markdown_file": "25-cues--digital-bo.md"
+    },
+    {
+      "chapter_id": "26-acknowledg",
+      "order": 26,
+      "title": "Acknowledgments",
+      "markdown_file": "26-cues--acknowledg.md"
+    },
+    {
+      "chapter_id": "27-notes",
+      "order": 27,
+      "title": "Notes",
+      "markdown_file": "27-cues--notes.md"
+    },
+    {
+      "chapter_id": "28-index",
+      "order": 28,
+      "title": "Index",
+      "markdown_file": "28-cues--index.md"
+    },
+    {
+      "chapter_id": "29-about-the",
+      "order": 29,
+      "title": "About the Author",
+      "markdown_file": "29-cues--about-the.md"
+    },
+    {
+      "chapter_id": "30-whats-next",
+      "order": 30,
+      "title": "What’s next on your reading list?",
+      "markdown_file": "30-cues--whats-next.md"
+    },
+    {
+      "chapter_id": "31-footnote-c",
+      "order": 31,
+      "title": "Footnote, Cues",
+      "markdown_file": "31-cues--footnote-c.md"
+    },
+    {
+      "chapter_id": "32-footnote-c-2",
+      "order": 32,
+      "title": "Footnote, Cues",
+      "markdown_file": "32-cues--footnote-c-2.md"
+    },
+    {
+      "chapter_id": "33-footnote-c-3",
+      "order": 33,
+      "title": "Footnote, Cues",
+      "markdown_file": "33-cues--footnote-c-3.md"
+    },
+    {
+      "chapter_id": "34-footnote-c-4",
+      "order": 34,
+      "title": "Footnote, Cues",
+      "markdown_file": "34-cues--footnote-c-4.md"
+    },
+    {
+      "chapter_id": "35-footnote-c-5",
+      "order": 35,
+      "title": "Footnote, Cues",
+      "markdown_file": "35-cues--footnote-c-5.md"
+    },
+    {
+      "chapter_id": "36-footnote-c-6",
+      "order": 36,
+      "title": "Footnote, Cues",
+      "markdown_file": "36-cues--footnote-c-6.md"
+    },
+    {
+      "chapter_id": "37-footnote-c-7",
+      "order": 37,
+      "title": "Footnote, Cues",
+      "markdown_file": "37-cues--footnote-c-7.md"
+    },
+    {
+      "chapter_id": "38-footnote-c-8",
+      "order": 38,
+      "title": "Footnote, Cues",
+      "markdown_file": "38-cues--footnote-c-8.md"
+    },
+    {
+      "chapter_id": "39-footnote-c-9",
+      "order": 39,
+      "title": "Footnote, Cues",
+      "markdown_file": "39-cues--footnote-c-9.md"
+    },
+    {
+      "chapter_id": "40-footnote-c-10",
+      "order": 40,
+      "title": "Footnote, Cues",
+      "markdown_file": "40-cues--footnote-c-10.md"
+    },
+    {
+      "chapter_id": "41-footnote-c-11",
+      "order": 41,
+      "title": "Footnote, Cues",
+      "markdown_file": "41-cues--footnote-c-11.md"
+    },
+    {
+      "chapter_id": "42-footnote-c-12",
+      "order": 42,
+      "title": "Footnote, Cues",
+      "markdown_file": "42-cues--footnote-c-12.md"
+    },
+    {
+      "chapter_id": "43-footnote-c-13",
+      "order": 43,
+      "title": "Footnote, Cues",
+      "markdown_file": "43-cues--footnote-c-13.md"
+    },
+    {
+      "chapter_id": "44-footnote-c-14",
+      "order": 44,
+      "title": "Footnote, Cues",
+      "markdown_file": "44-cues--footnote-c-14.md"
+    },
+    {
+      "chapter_id": "45-footnote-c-15",
+      "order": 45,
+      "title": "Footnote, Cues",
+      "markdown_file": "45-cues--footnote-c-15.md"
+    },
+    {
+      "chapter_id": "46-footnote-c-16",
+      "order": 46,
+      "title": "Footnote, Cues",
+      "markdown_file": "46-cues--footnote-c-16.md"
+    },
+    {
+      "chapter_id": "47-footnote-c-17",
+      "order": 47,
+      "title": "Footnote, Cues",
+      "markdown_file": "47-cues--footnote-c-17.md"
+    },
+    {
+      "chapter_id": "48-footnote-c-18",
+      "order": 48,
+      "title": "Footnote, Cues",
+      "markdown_file": "48-cues--footnote-c-18.md"
+    },
+    {
+      "chapter_id": "49-footnote-c-19",
+      "order": 49,
+      "title": "Footnote, Cues",
+      "markdown_file": "49-cues--footnote-c-19.md"
+    },
+    {
+      "chapter_id": "50-footnote-c-20",
+      "order": 50,
+      "title": "Footnote, Cues",
+      "markdown_file": "50-cues--footnote-c-20.md"
+    },
+    {
+      "chapter_id": "51-footnote-c-21",
+      "order": 51,
+      "title": "Footnote, Cues",
+      "markdown_file": "51-cues--footnote-c-21.md"
+    },
+    {
+      "chapter_id": "52-footnote-c-22",
+      "order": 52,
+      "title": "Footnote, Cues",
+      "markdown_file": "52-cues--footnote-c-22.md"
+    },
+    {
+      "chapter_id": "53-footnote-c-23",
+      "order": 53,
+      "title": "Footnote, Cues",
+      "markdown_file": "53-cues--footnote-c-23.md"
+    },
+    {
+      "chapter_id": "54-footnote-c-24",
+      "order": 54,
+      "title": "Footnote, Cues",
+      "markdown_file": "54-cues--footnote-c-24.md"
+    },
+    {
+      "chapter_id": "55-footnote-c-25",
+      "order": 55,
+      "title": "Footnote, Cues",
+      "markdown_file": "55-cues--footnote-c-25.md"
+    },
+    {
+      "chapter_id": "56-footnote-c-26",
+      "order": 56,
+      "title": "Footnote, Cues",
+      "markdown_file": "56-cues--footnote-c-26.md"
+    },
+    {
+      "chapter_id": "57-footnote-c-27",
+      "order": 57,
+      "title": "Footnote, Cues",
+      "markdown_file": "57-cues--footnote-c-27.md"
+    },
+    {
+      "chapter_id": "58-footnote-c-28",
+      "order": 58,
+      "title": "Footnote, Cues",
+      "markdown_file": "58-cues--footnote-c-28.md"
+    }
+  ]
+}

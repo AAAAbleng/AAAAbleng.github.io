@@ -1,0 +1,1 @@
+[*](13_Chapter_5_How_to_Look.xhtml#footnote-015-backlink "footnote reference") Will Ferrell and Ben Stiller got the idea for the blue steel look in the movie _Zoolander_ from Pierce Brosnan, who is known to harden his lower lids on the red carpet. See your digital bonuses at [scienceofpeople.com/bonus](http://scienceofpeople.com/bonus) for some hilarious examples.

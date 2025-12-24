@@ -1,0 +1,1 @@
+[*](22_Chapter_10_Creating_a.xhtml#footnote-028-backlink "footnote reference") Some font associations are cultural. For example, the Japanese find serif fonts elegant, classical, and sleek, compared to narrow fonts, which they see as modern and positive.

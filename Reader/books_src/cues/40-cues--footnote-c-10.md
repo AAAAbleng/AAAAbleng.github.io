@@ -1,0 +1,1 @@
+[*](12_Chapter_4_The_Wow_Fac.xhtml#footnote-010-backlink "footnote reference") To see a clip of the interview, check out your digital bonuses at [scienceofpeople.com/bonus](http://scienceofpeople.com/bonus).

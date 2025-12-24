@@ -1,0 +1,1 @@
+[*](09_Chapter_2_How_Cues_Wo.xhtml#footnote-001-backlink "footnote reference") Some religious scholars believe that the one palm up and one palm down cue can also represent judgment in the afterlife. This might be an additional signal for religious onlookers.

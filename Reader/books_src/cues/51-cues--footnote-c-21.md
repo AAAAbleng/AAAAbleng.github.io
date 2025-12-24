@@ -1,0 +1,1 @@
+[*](17_Chapter_7_Sound_Power.xhtml#footnote-021-backlink "footnote reference") To see a funny version of uptalk in action, watch the _Saturday Night Live_ skit “The Californians” in your digital bonuses at [scienceofpeople.com/bonus](http://scienceofpeople.com/bonus).

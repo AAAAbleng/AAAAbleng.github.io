@@ -1,0 +1,1 @@
+[*](12_Chapter_4_The_Wow_Fac.xhtml#footnote-009-backlink "footnote reference") There are certain cultures in places like Bulgaria, India, and Pakistan where nods are used differently. Check your cultural norms.

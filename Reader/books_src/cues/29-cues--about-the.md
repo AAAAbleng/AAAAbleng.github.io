@@ -1,0 +1,3 @@
+# About the Author
+
+Vanessa Van Edwards is a speaker, researcher, and nationally bestselling author. More than 36 million people have seen her on YouTube and in her viral TEDxLondon talk. Her behavior research lab, Science of People, has been featured in _Fast Company_ , _Inc_., _USA Today_ , _Entrepreneur_ magazine, and many more places, including on CNN and CBS. Her book _Captivate: The Science of Succeeding with People_ has been translated into more than sixteen languages. For more than a decade, she has been leading corporate trainings and workshops to audiences around the world, including at SXSW and MIT, and at companies including Google, Dove, Microsoft, and Comcast. She lives with her husband and daughter in Austin, Texas.

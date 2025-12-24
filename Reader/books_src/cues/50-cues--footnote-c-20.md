@@ -1,0 +1,1 @@
+[*](14_Chapter_6_How_to_Spot.xhtml#footnote-016-backlink "footnote reference") Lie detection is a complex science. I teach a five-step model for lie detection in one of my courses. Clusters are just one of the steps to ensure that you don’t falsely accuse someone.

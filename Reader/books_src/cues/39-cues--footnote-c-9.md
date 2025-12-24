@@ -1,0 +1,1 @@
+[*](11_Chapter_3_The_Body_La.xhtml#footnote-002-backlink "footnote reference") During the COVID-19 pandemic we made a video tutorial on reading facial expressions even with masks on. The video quickly garnered thousands of views. If you would like to learn how to read faces with masks on, the video is in your digital bonuses.

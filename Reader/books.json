@@ -1,5 +1,12 @@
 [
   {
+    "book_id": "cues",
+    "title": "Cues",
+    "author": "Vanessa Van Edwards",
+    "cover_image": "books_src/cues/assets/9780593332207_cover.jpg",
+    "meta_path": "books_src/cues/meta.json"
+  },
+  {
     "book_id": "reframe-your-brain-the-user-interface-for-happines",
     "title": "Reframe Your Brain: The User Interface for Happiness and Success",
     "author": "Scott Adams",

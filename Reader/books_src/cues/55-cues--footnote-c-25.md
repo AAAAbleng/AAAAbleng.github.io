@@ -1,0 +1,1 @@
+[*](18_Chapter_8_Vocal_Likab.xhtml#footnote-022-backlink "footnote reference") To learn my go-to warm-up routine, check out the digital bonuses at scienceofpeople.com /bonus. Hint: It involves, shushes, hums, chants, and enunciation exercises.

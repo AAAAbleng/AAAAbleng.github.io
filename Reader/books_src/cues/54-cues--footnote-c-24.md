@@ -1,0 +1,1 @@
+[*](18_Chapter_8_Vocal_Likab.xhtml#footnote-023-backlink "footnote reference") Story told by former presidential speechwriter and author James C. Humes in his book _Speak Like Churchill, Stand Like Lincoln._

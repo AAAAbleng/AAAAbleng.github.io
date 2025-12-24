@@ -1,0 +1,1 @@
+[*](14_Chapter_6_How_to_Spot.xhtml#footnote-018-backlink "footnote reference") Dr. Paul Ekman has discovered seven universal facial expressions: happiness, contempt, fear, sadness, disgust, surprise, and anger. I have an entire chapter dedicated to them in my book _Captivate._

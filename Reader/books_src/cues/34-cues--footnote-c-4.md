@@ -1,0 +1,1 @@
+[*](11_Chapter_3_The_Body_La.xhtml#footnote-007-backlink "footnote reference") Ambiverts have the characteristics of both an introvert and an extrovert. Read my full guide on ambiversion in your digital bonuses at [scienceofpeople.com/bonus](http://scienceofpeople.com/bonus).
