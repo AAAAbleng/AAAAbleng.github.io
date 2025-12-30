@@ -554,7 +554,7 @@
       const token = await this._getValidToken();
       if (!token) throw new Error('未登录 OneDrive');
       
-      const uploadUrl = `https://graph.microsoft.com/v1.0/me/drive/special/approot:/${filename}:/content`;
+      const uploadUrl = `https://graph.microsoft.com/v1.0/me/drive/special/approot:/DayX/${filename}:/content`;
       
       const response = await fetch(uploadUrl, {
         method: 'PUT',
@@ -578,8 +578,8 @@
       const token = await this._getValidToken();
       if (!token) throw new Error('未登录 OneDrive');
       
-      // 直接从 approot 根目录获取文件列表（应用专属文件夹）
-      const listUrl = 'https://graph.microsoft.com/v1.0/me/drive/special/approot/children';
+      // 从 approot/DayX 文件夹获取文件列表
+      const listUrl = 'https://graph.microsoft.com/v1.0/me/drive/special/approot:/DayX:/children';
       
       console.log('正在获取 OneDrive 备份列表...');
       
