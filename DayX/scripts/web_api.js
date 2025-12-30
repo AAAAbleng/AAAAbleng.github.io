@@ -290,12 +290,14 @@
 
     async exportData(){
       const all = await _getAllDaysSorted();
-      return JSON.stringify(all, null, 2);
+      // 返回对象数组，与 Tauri 版本保持一致
+      return all;
     },
 
     async exportDataToFile(filePath){
       // In browser, trigger download
-      const json = await this.exportData();
+      const data = await this.exportData();
+      const json = JSON.stringify(data, null, 2);
       const blob = new Blob([json], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');

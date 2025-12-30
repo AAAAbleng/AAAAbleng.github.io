@@ -533,7 +533,7 @@ const InputPage = {
             // 确保文件名以 .json 结尾
             const finalFilename = filename.endsWith('.json') ? filename : `${filename}.json`;
 
-            // 导出数据
+            // 导出数据并序列化为 JSON 字符串
             const data = await TauriAPI.exportData();
             const jsonData = JSON.stringify(data, null, 2);
 
