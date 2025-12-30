@@ -579,7 +579,7 @@
       if (!token) throw new Error('未登录 OneDrive');
       
       // 从 approot/DayX 文件夹获取文件列表
-      const listUrl = 'https://graph.microsoft.com/v1.0/me/drive/special/approot:/DayX/children';
+      const listUrl = 'https://graph.microsoft.com/v1.0/me/drive/special/approot:/DayX:/children';
       
       console.log('正在获取 OneDrive 备份列表...');
       
