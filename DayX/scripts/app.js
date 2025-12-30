@@ -70,6 +70,11 @@ async function handleWebOAuthCallback() {
             if (typeof Toast !== 'undefined') {
                 Toast.success('OneDrive 登录成功！');
             }
+            
+            // 刷新设置页面的 OneDrive 状态
+            if (typeof SettingsPage !== 'undefined' && SettingsPage.checkOneDriveStatus) {
+                SettingsPage.checkOneDriveStatus();
+            }
         }, 500);
     } catch (error) {
         console.error('OAuth 回调处理失败:', error);

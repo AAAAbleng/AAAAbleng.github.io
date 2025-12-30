@@ -348,7 +348,10 @@
     // OneDrive 配置
     _oneDriveConfig: {
       clientId: 'cf9e57d0-7dc3-4fd9-93f9-751d2abc1124', // 与 Tauri 版本相同
-      redirectUri: 'https://aaaableng.github.io/DayX/', // Web 版重定向地址
+      // 自动检测 redirect_uri：本地开发用 localhost，生产用 GitHub Pages
+      redirectUri: window.location.hostname === 'localhost' 
+        ? 'http://localhost:8080' 
+        : 'https://aaaableng.github.io/DayX/',
       scopes: 'Files.ReadWrite.AppFolder offline_access',
       tokenKey: 'onedrive_token_web',
       pkceKey: 'onedrive_pkce_web'
