@@ -465,6 +465,12 @@
       localStorage.setItem(this._oneDriveConfig.tokenKey, JSON.stringify(token));
       localStorage.removeItem(this._oneDriveConfig.pkceKey);
       
+      console.log('✅ Token 已保存到 localStorage:', {
+        tokenKey: this._oneDriveConfig.tokenKey,
+        hasRefreshToken: !!token.refresh_token,
+        expiresAt: new Date(token.expires_at * 1000).toLocaleString()
+      });
+      
       // 清除 URL 参数
       window.history.replaceState({}, document.title, window.location.pathname);
       
@@ -572,18 +578,30 @@
       const token = await this._getValidToken();
       if (!token) throw new Error('未登录 OneDrive');
       
+      // 先检查 approot 是否存在 DayX 文件夹，如果不存在则返回空
       const listUrl = 'https://graph.microsoft.com/v1.0/me/drive/special/approot/children';
+      
+      console.log('正在获取 OneDrive 备份列表...');
       
       const response = await fetch(listUrl, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('获取备份列表失败:', response.status, errorText);
         return [];
       }
       
       const data = await response.json();
-      return data.value || [];
+      console.log('OneDrive 备份列表响应:', data);
+      
+      // 过滤只显示 .json 文件
+      const jsonFiles = (data.value || []).filter(item => 
+        item.name && item.name.endsWith('.json')
+      );
+      
+      return jsonFiles;
     },
 
     // 从 OneDrive 下载备份
@@ -614,6 +632,11 @@
     // 检查是否已登录
     async isOneDriveLoggedIn() {
       const token = await this._getValidToken();
+      console.log('检查 OneDrive 登录状态:', {
+        hasToken: !!token,
+        tokenKey: this._oneDriveConfig.tokenKey,
+        localStorageValue: localStorage.getItem(this._oneDriveConfig.tokenKey)
+      });
       return !!token;
     },
 

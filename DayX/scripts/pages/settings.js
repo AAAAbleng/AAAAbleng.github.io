@@ -581,14 +581,16 @@ const SettingsPage = {
 
         try {
             const backups = await TauriAPI.listOneDriveBackups();
+            console.log('云端备份列表:', backups);
 
-            if (backups.length === 0) {
+            if (!backups || backups.length === 0) {
                 listContainer.innerHTML = '<div class="empty-backups">暂无云端备份</div>';
                 return;
             }
 
             listContainer.innerHTML = backups.map(backup => {
-                const date = new Date(backup.created_date_time);
+                // Microsoft Graph API 返回 createdDateTime (camelCase)
+                const date = new Date(backup.createdDateTime || backup.created_date_time);
                 const dateStr = date.toLocaleString('zh-CN');
                 const sizeKB = (backup.size / 1024).toFixed(2);
 
