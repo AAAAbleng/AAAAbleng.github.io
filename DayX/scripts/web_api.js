@@ -578,14 +578,20 @@
       const token = await this._getValidToken();
       if (!token) throw new Error('未登录 OneDrive');
       
-      // 先检查 approot 是否存在 DayX 文件夹，如果不存在则返回空
-      const listUrl = 'https://graph.microsoft.com/v1.0/me/drive/special/approot/children';
+      // 使用与桌面端一致的路径：approot 下的 DayX 文件夹
+      const listUrl = 'https://graph.microsoft.com/v1.0/me/drive/special/approot:/DayX:/children';
       
       console.log('正在获取 OneDrive 备份列表...');
       
       const response = await fetch(listUrl, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
+      
+      // 如果返回 404 说明 DayX 文件夹还不存在，返回空列表
+      if (response.status === 404) {
+        console.log('📁 DayX 文件夹不存在，返回空列表');
+        return [];
+      }
       
       if (!response.ok) {
         const errorText = await response.text();
