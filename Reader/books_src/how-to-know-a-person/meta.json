@@ -1,0 +1,193 @@
+{
+  "book_id": "how-to-know-a-person",
+  "title": "How to Know a Person",
+  "author": "David Brooks",
+  "chapters": [
+    {
+      "chapter_id": "01-cover-how",
+      "order": 1,
+      "title": "Cover, How to Know a Person",
+      "markdown_file": "01-how-to-know-a-person--cover-how.md"
+    },
+    {
+      "chapter_id": "02-title-page",
+      "order": 2,
+      "title": "Title Page, How to Know a Person",
+      "markdown_file": "02-how-to-know-a-person--title-page.md"
+    },
+    {
+      "chapter_id": "03-copyright",
+      "order": 3,
+      "title": "Copyright, How to Know a Person",
+      "markdown_file": "03-how-to-know-a-person--copyright.md"
+    },
+    {
+      "chapter_id": "04-contents",
+      "order": 4,
+      "title": "Contents",
+      "markdown_file": "04-how-to-know-a-person--contents.md"
+    },
+    {
+      "chapter_id": "05-part-1-i-s",
+      "order": 5,
+      "title": "Part 1: I See You, How to Know a Person",
+      "markdown_file": "05-how-to-know-a-person--part-1-i-s.md"
+    },
+    {
+      "chapter_id": "06-one",
+      "order": 6,
+      "title": "-ONE\nThe Power of Being Seen",
+      "markdown_file": "06-how-to-know-a-person--one.md"
+    },
+    {
+      "chapter_id": "07-two",
+      "order": 7,
+      "title": "-TWO\nHow Not to See a Person",
+      "markdown_file": "07-how-to-know-a-person--two.md"
+    },
+    {
+      "chapter_id": "08-three",
+      "order": 8,
+      "title": "-THREE\nIllumination",
+      "markdown_file": "08-how-to-know-a-person--three.md"
+    },
+    {
+      "chapter_id": "09-four",
+      "order": 9,
+      "title": "-FOUR\nAccompaniment",
+      "markdown_file": "09-how-to-know-a-person--four.md"
+    },
+    {
+      "chapter_id": "10-five",
+      "order": 10,
+      "title": "-FIVE\nWhat Is a Person?",
+      "markdown_file": "10-how-to-know-a-person--five.md"
+    },
+    {
+      "chapter_id": "11-six",
+      "order": 11,
+      "title": "-SIX\nGood Talks",
+      "markdown_file": "11-how-to-know-a-person--six.md"
+    },
+    {
+      "chapter_id": "12-seven",
+      "order": 12,
+      "title": "-SEVEN\nThe Right Questions",
+      "markdown_file": "12-how-to-know-a-person--seven.md"
+    },
+    {
+      "chapter_id": "13-part-2-i-s",
+      "order": 13,
+      "title": "Part 2: I See You in Your Struggles, How to Know a Person",
+      "markdown_file": "13-how-to-know-a-person--part-2-i-s.md"
+    },
+    {
+      "chapter_id": "14-eight",
+      "order": 14,
+      "title": "-EIGHT\nThe Epidemic of Blindness",
+      "markdown_file": "14-how-to-know-a-person--eight.md"
+    },
+    {
+      "chapter_id": "15-nine",
+      "order": 15,
+      "title": "-NINE\nHard Conversations",
+      "markdown_file": "15-how-to-know-a-person--nine.md"
+    },
+    {
+      "chapter_id": "16-ten",
+      "order": 16,
+      "title": "-TEN\nHow Do You Serve a Friend Who Is in Despair?",
+      "markdown_file": "16-how-to-know-a-person--ten.md"
+    },
+    {
+      "chapter_id": "17-eleven",
+      "order": 17,
+      "title": "-ELEVEN\nThe Art of Empathy",
+      "markdown_file": "17-how-to-know-a-person--eleven.md"
+    },
+    {
+      "chapter_id": "18-twelve",
+      "order": 18,
+      "title": "-TWELVE\nHow Were You Shaped by Your Sufferings?",
+      "markdown_file": "18-how-to-know-a-person--twelve.md"
+    },
+    {
+      "chapter_id": "19-part-3-i-s",
+      "order": 19,
+      "title": "Part 3: I See You with Your Strengths, How to Know a Person",
+      "markdown_file": "19-how-to-know-a-person--part-3-i-s.md"
+    },
+    {
+      "chapter_id": "20-thirteen",
+      "order": 20,
+      "title": "-THIRTEEN\nPersonality: What Energy Do You Bring into the Room?",
+      "markdown_file": "20-how-to-know-a-person--thirteen.md"
+    },
+    {
+      "chapter_id": "21-fourteen",
+      "order": 21,
+      "title": "-FOURTEEN\nLife Tasks",
+      "markdown_file": "21-how-to-know-a-person--fourteen.md"
+    },
+    {
+      "chapter_id": "22-fifteen",
+      "order": 22,
+      "title": "-FIFTEEN\nLife Stories",
+      "markdown_file": "22-how-to-know-a-person--fifteen.md"
+    },
+    {
+      "chapter_id": "23-sixteen",
+      "order": 23,
+      "title": "-SIXTEEN\nHow Do Your Ancestors Show Up in Your Life?",
+      "markdown_file": "23-how-to-know-a-person--sixteen.md"
+    },
+    {
+      "chapter_id": "24-seventeen",
+      "order": 24,
+      "title": "-SEVENTEEN\nWhat Is Wisdom?",
+      "markdown_file": "24-how-to-know-a-person--seventeen.md"
+    },
+    {
+      "chapter_id": "25-dedication",
+      "order": 25,
+      "title": "Dedication, How to Know a Person",
+      "markdown_file": "25-how-to-know-a-person--dedication.md"
+    },
+    {
+      "chapter_id": "26-acknowledg",
+      "order": 26,
+      "title": "Acknowledgments",
+      "markdown_file": "26-how-to-know-a-person--acknowledg.md"
+    },
+    {
+      "chapter_id": "27-notes",
+      "order": 27,
+      "title": "Notes",
+      "markdown_file": "27-how-to-know-a-person--notes.md"
+    },
+    {
+      "chapter_id": "28-index",
+      "order": 28,
+      "title": "Index",
+      "markdown_file": "28-how-to-know-a-person--index.md"
+    },
+    {
+      "chapter_id": "29-by-david-b",
+      "order": 29,
+      "title": "by david brooks",
+      "markdown_file": "29-how-to-know-a-person--by-david-b.md"
+    },
+    {
+      "chapter_id": "30-about-the",
+      "order": 30,
+      "title": "ABOUT THE AUTHOR",
+      "markdown_file": "30-how-to-know-a-person--about-the.md"
+    },
+    {
+      "chapter_id": "31-whats-next",
+      "order": 31,
+      "title": "What’s next on your reading list?",
+      "markdown_file": "31-how-to-know-a-person--whats-next.md"
+    }
+  ]
+}

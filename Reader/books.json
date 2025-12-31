@@ -1,5 +1,12 @@
 [
   {
+    "book_id": "how-to-know-a-person",
+    "title": "How to Know a Person",
+    "author": "David Brooks",
+    "cover_image": "books_src/how-to-know-a-person/assets/9780593230084_cover.jpg",
+    "meta_path": "books_src/how-to-know-a-person/meta.json"
+  },
+  {
     "book_id": "cues",
     "title": "Cues",
     "author": "Vanessa Van Edwards",
